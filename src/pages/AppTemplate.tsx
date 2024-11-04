@@ -4,15 +4,18 @@ import { CommandPallete } from '@/features/navigation/components/CommandPallete'
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AppSidebar } from '@/features/navigation/components/Sidebar/app-sidebar';
 import { useUserStore } from '@/store/useUserStore';
+import { useEffect } from 'react';
 
 export function AppTemplate() {
 
   const { user } = useUserStore();
   const navigate = useNavigate();
 
-  if (!user) {
-    navigate('/login');
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <SidebarProvider defaultOpen={false}>
