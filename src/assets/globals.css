@@ -19,16 +19,16 @@
     --popover-foreground-hover: hsl(224, 67%, 30%);
 
     --primary: hsl(0, 0%, 100%);
-    --primary-foreground: hsl(0, 0%, 100%);
+    --primary-foreground: hsl(0, 0%, 0%);
     --primary-hover: hsl(221, 59%, 24%);
     --primary-foreground-hover: hsl(0, 0%, 95%);
 
     --secondary: hsl(0, 0%, 77%);
-    --secondary-foreground: hsl(218, 83%, 5%);
+    --secondary-foreground: hsl(0, 0%, 0%);
     --secondary-hover: hsl(0, 0%, 95%);
     --secondary-foreground-hover: hsl(219, 81%, 8%);
 
-    --tertiary: hsl(206, 55%, 25%);
+    --tertiary: hsl(0, 0%, 73%);
     --tertiary-foreground: hsl(0, 0%, 100%);
     --tertiary-hover: hsl(206, 87%, 65%);
     --tertiary-foreground-hover: hsl(220, 42%, 10%);
@@ -145,7 +145,7 @@
     --secondary-hover: hsl(224, 67%, 15%);
     --secondary-foreground-hover: hsl(210, 35%, 93%);
 
-    --tertiary: hsl(206, 66%, 49%);
+    --tertiary: hsl(0, 0%, 12%);
     --tertiary-foreground: hsl(222.2, 47.4%, 11.2%);
     --tertiary-hover: hsl(206, 61%, 54%);
     --tertiary-foreground-hover: hsl(222.2, 42.4%, 16.2%);

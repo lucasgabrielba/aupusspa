@@ -1,5 +1,4 @@
 import { type ComponentProps, useEffect, useState } from 'react';
-import { getAttachmentUrl } from '../common/AttachmentsCard/getFileTypeLabel';
 import { useOrganizationsStore } from '@/store/useOrganizationsStore';
 
 type LogoProps = {
@@ -16,7 +15,7 @@ export function Logo({
   const { brand } = useOrganizationsStore();
 
   const [source, setSource] = useState(src);
-
+  source
   function handleError() {
     setSource( fallbackSrc);
   }
@@ -27,5 +26,5 @@ export function Logo({
     }
   }, []);
 
-  return <img src={getAttachmentUrl(source || '')} onError={handleError} {...otherProps} />;
+  return <img src='' onError={handleError} {...otherProps} />;
 }

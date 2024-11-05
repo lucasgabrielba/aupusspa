@@ -1,5 +1,5 @@
 import EnergyDashboard from "./energy-dashbard";
-import { MonitoringCard } from "./monitoring-card";
+import { TitleCard } from "../../../../components/common/title-card";
 
 export interface BillingData {
   month: string;
@@ -18,31 +18,12 @@ interface ConsumptionMonitoringProps {
 
 export function ConsumptionMonitoring({ className }: ConsumptionMonitoringProps) {
 
-  const billingDataMock: BillingData = {
-    month: 'outubro',
-    hasInvoice: true,
-  };
-
-  const unitsMock: Unit[] = [
-    {
-      id: '1',
-      name: 'Unidade 1',
-      logoPath: 'https://via.placeholder.com/150',
-    },
-    {
-      id: '2',
-      name: 'Unidade 2',
-    },
-    {
-      id: '3',
-      name: 'Unidade 3',
-    },
-  ]
-
-
   return (
     <div className={`flex flex-col w-full gap-6 ${className}`}>
-      <MonitoringCard billingData={billingDataMock} units={unitsMock} />
+      <TitleCard
+        title="Monitoramento de Consumo"
+        description="Acompanhe o consumo total, valores acumulados e o número de unidades consumidoras cadastradas"
+         />
       <EnergyDashboard />
     </div>
   );

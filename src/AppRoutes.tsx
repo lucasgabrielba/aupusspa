@@ -3,6 +3,8 @@ import { Login } from './pages/login';
 // import { FeatureWrapper } from './components/common/FeatureWrapper';
 import { AppTemplate } from './pages/AppTemplate';
 import { ConsumptionMonitoringPage } from './pages/consumption-monitoring';
+import { OpportunitiesPage } from './pages/opportunities';
+import { InvoicesPage } from './pages/invoices';
 
 export const appRoutes = createBrowserRouter([
   {
@@ -46,7 +48,7 @@ export const appRoutes = createBrowserRouter([
             index: true,
             element: (
               // <FeatureWrapper feature="OpportunityTracker">
-                <ConsumptionMonitoringPage />
+                <OpportunitiesPage />
               // </FeatureWrapper>
             ),
           },
@@ -59,7 +61,7 @@ export const appRoutes = createBrowserRouter([
             index: true,
             element: (
               // <FeatureWrapper feature="Invoices">
-                <ConsumptionMonitoringPage />
+                <InvoicesPage />
               // </FeatureWrapper>
             ),
           },

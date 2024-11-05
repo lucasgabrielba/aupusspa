@@ -8,8 +8,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { Unit } from "@/types/dtos/unit-dto";
 import { ChevronsUpDown, Plus } from "lucide-react";
-import { Unit } from ".";
 import React from "react";
 
 interface BillingData {
@@ -17,52 +17,74 @@ interface BillingData {
   hasInvoice: boolean;
 }
 
-export function MonitoringCard({ billingData, units }: { billingData: BillingData; units: Unit[] }) {
-  const [selectedUnits, setSelectedUnits] = React.useState<Unit[]>([]);
+interface TitleCardProps {
+  title: string;
+  description: string;
+}
 
-  const handleSetUnit = (unit: Unit) => {
+export function TitleCard({ title, description }: TitleCardProps) {
+
+  const billingData: BillingData = {
+    month: 'outubro',
+    hasInvoice: true,
+  };
+
+  const units: Unit[] = [
+    {
+      id: '1',
+      name: 'Unidade 1',
+    },
+    {
+      id: '2',
+      name: 'Unidade 2',
+    },
+    {
+      id: '3',
+      name: 'Unidade 3',
+    },
+  ]
+
+  const [selectedUnits, setSelectedUnits] = React.useState([]);
+
+  const handleSetUnit = (unit) => {
     setSelectedUnits((prev) => {
       if (prev.find((u) => u.id === unit.id)) {
-        return prev.filter((u) => u.id !== unit.id); // Remove se já estiver selecionada
+        return prev.filter((u) => u.id !== unit.id);
       }
-      return [...prev, unit]; // Adiciona se não estiver selecionada
+      return [...prev, unit];
     });
   };
 
   const handleNewUnit = () => {
     console.log("Nova unidade adicionada");
-    // Lógica para adicionar uma nova unidade
   };
 
   return (
-    <div className="space-y-4">
-      {/* Card de Monitoramento de Consumo */}
+    <div className="space-y-4 w-full">
       <Card className="rounded-sm">
         <CardHeader>
-          <CardTitle className="text-lg font-semibold">Monitoramento de Consumo</CardTitle>
-          <CardDescription>Acompanhe o consumo total, valores acumulados e o número de unidades consumidoras cadastradas</CardDescription>
+          <CardTitle className="text-lg font-semibold">{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
         {billingData?.hasInvoice && (
-        <Card className="rounded-sm">
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold">
-              As faturas referentes ao mês de {billingData.month} já estão disponíveis para pagamento!
-            </CardTitle>
-            <CardDescription>
-              Clique em <span className="font-semibold">baixar suas faturas</span> e use o app do seu banco para seguir com o pagamento!
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-sm text-card-foreground space-y-2">
-            <Button variant="outline" className="bg-card-foreground text-card rounded-sm border-none">
-              Baixar minhas faturas
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-        <CardContent className="text-sm text-card-foreground">
-        </CardContent>
-        <CardFooter className={`flex items-center justify-start border-t p-4 gap-6 ${billingData?.hasInvoice ? 'border-none' : 'border-t'}`}>
-          <div>
+          <Card className="rounded-sm">
+            <CardHeader>
+              <CardTitle className="text-lg font-semibold">
+                As faturas referentes ao mês de {billingData.month} já estão disponíveis para pagamento!
+              </CardTitle>
+              <CardDescription>
+                Clique em <span className="font-semibold">baixar suas faturas</span> e use o app do seu banco para seguir com o pagamento!
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-card-foreground space-y-2">
+              <Button variant="outline" className="bg-card-foreground text-card rounded-sm border-none">
+                Baixar minhas faturas
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+        <CardFooter className={`flex items-center justify-start p-4 gap-6 bg-tertiary rounded-b-sm ${billingData?.hasInvoice ? 'border-none' : 'border-t'}`}>
+          <div className="ml-2">
             <p className="text-md font-semibold text-card-foreground">
               Exibir de todas as unidades geradoras ({selectedUnits.length || 0})
             </p>
