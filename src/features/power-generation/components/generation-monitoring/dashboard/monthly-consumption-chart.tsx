@@ -76,7 +76,7 @@ export function MonthlyConsumptionChart() {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="px-2 sm:p-6">
+      <CardContent className="px-2 sm:p-6 mt-6">
         <ChartContainer className="aspect-auto h-[250px] w-full" config={chartConfig}>
           <BarChart
             data={consumptionData}
