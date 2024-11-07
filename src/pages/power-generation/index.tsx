@@ -2,7 +2,7 @@ import { Layout } from '@/components/common/Layout';
 import { ConsumerUnitsMap } from '@/features/consumption-monitoring/components/consumer-unit-map';
 import { SearchUC } from '@/features/consumption-monitoring/components/search-uc';
 import { GenerationMonitoring } from '@/features/power-generation/components/generation-monitoring';
-import Dashboard from '@/features/power-generation/components/generation-monitoring/dashboard';
+import { GenerationDashboard } from '@/features/power-generation/components/generation-monitoring/dashboard';
 import { GenerationData } from '@/features/power-generation/components/generation-monitoring/generation-data';
 
 export function PowerGenerationPage() {
@@ -17,7 +17,7 @@ export function PowerGenerationPage() {
         </div>
 
         <div className='lg:col-span-3 h-full'>
-        <Dashboard/>
+        <GenerationDashboard/>
         </div>
         <div className="lg:col-span-2 h-full">
           <ConsumerUnitsMap />

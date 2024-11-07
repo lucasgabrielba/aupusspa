@@ -31,7 +31,7 @@
     --tertiary: hsl(0, 0%, 73%);
     --tertiary-foreground: hsl(0, 0%, 100%);
     --tertiary-hover: hsl(206, 87%, 65%);
-    --tertiary-foreground-hover: hsl(220, 42%, 10%);
+    --tertiary-foreground-hover: hsl(0, 0%, 0%);
 
     --info: hsl(206, 84%, 50%);
     --info-foreground: hsl(88, 96%, 89%);
@@ -146,7 +146,7 @@
     --secondary-foreground-hover: hsl(210, 35%, 93%);
 
     --tertiary: hsl(0, 0%, 12%);
-    --tertiary-foreground: hsl(222.2, 47.4%, 11.2%);
+    --tertiary-foreground: hsl(0, 0%, 100%);
     --tertiary-hover: hsl(206, 61%, 54%);
     --tertiary-foreground-hover: hsl(222.2, 42.4%, 16.2%);
 
