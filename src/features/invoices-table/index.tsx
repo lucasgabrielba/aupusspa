@@ -31,6 +31,8 @@ export default function InvoicesTable() {
   const years = ["2023", "2024", "2025"];
   const statuses = ["Aguardando pagamento", "Vencidas", "Pagas"];
 
+  const overdueMonths = ["outubro"]; // Meses com faturas atrasadas
+
   return (
     <div className="bg-transparent text-card-foreground flex flex-col gap-4 w-full">
       <Card>
@@ -64,10 +66,7 @@ export default function InvoicesTable() {
             <Button
               key={month}
               variant={selectedMonth === month.toLowerCase() ? "default" : "ghost"}
-              className={`text-sm px-3 h-8 rounded-xs ${selectedMonth === month.toLowerCase()
-                ? "bg-primary text-primary-foreground"
-                : "hover:bg-card hover:text-card-foreground"
-                }`}
+              className={`text-sm w-full h-8 rounded-xs ${selectedMonth === month.toLowerCase() ? "bg-primary text-primary-foreground" : overdueMonths.includes(month.toLowerCase()) ? "bg-destructive text-white" : "hover:bg-card hover:text-card-foreground"}`}
               onClick={() => setSelectedMonth(month.toLowerCase())}
             >
               {month}
@@ -78,7 +77,7 @@ export default function InvoicesTable() {
 
       <div className="flex-grow lg:hidden w-full">
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex items-center justify-between w-full bg-card px-4 py-2 rounded-sm cursor-pointer gap-2">
+          <DropdownMenuTrigger className="flex items-center justify-between w-full px-4 py-2 rounded-sm cursor-pointer gap-2 bg-card">
             <span>{selectedMonth.charAt(0).toUpperCase() + selectedMonth.slice(1)}</span>
             <ChevronsUpDown className="h-4 w-4" />
           </DropdownMenuTrigger>
@@ -87,21 +86,21 @@ export default function InvoicesTable() {
               <DropdownMenuItem
                 key={month}
                 onClick={() => setSelectedMonth(month.toLowerCase())}
-                className="cursor-pointer"
-              >
-                {month}
-              </DropdownMenuItem>
-            ))}
+          className={`cursor-pointer ${overdueMonths.includes(month.toLowerCase()) ? "bg-destructive text-white" : ""}`}
+        >
+          {month}
+        </DropdownMenuItem>
+      ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+
 
       <Card className="w-full">
         <CardHeader className="flex gap-4">
           <div className="flex justify-between flex-row gap-2">
             <CardTitle>Faturas de {months.find((month) => month.toLowerCase() === selectedMonth)} de {selectedYear}</CardTitle>
             <Badge variant="green">Verde</Badge>
-
           </div>
 
           {/* Status Control */}

@@ -5,6 +5,7 @@ import { AppTemplate } from './pages/AppTemplate';
 import { ConsumptionMonitoringPage } from './pages/consumption-monitoring';
 import { OpportunitiesPage } from './pages/opportunities';
 import { InvoicesPage } from './pages/invoices';
+import { PowerGenerationPage } from './pages/power-generation';
 
 export const appRoutes = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ export const appRoutes = createBrowserRouter([
             index: true,
             element: (
               // <FeatureWrapper feature="PowerGeneration">
-                <ConsumptionMonitoringPage />
+                <PowerGenerationPage />
               // </FeatureWrapper>
             ),
           },

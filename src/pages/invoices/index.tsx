@@ -6,9 +6,7 @@ export function InvoicesPage() {
   return (
     <Layout>
       <Layout.Main>
-        {/* Primeira linha: TitleCard */}
         <TitleCard title='Minhas faturas' description='Acompanhe a geração total de energia, valoresgerado e o número de beneficiários cadastradas' />
-
         <InvoicesTable/>
       </Layout.Main>
     </Layout>
