@@ -8,7 +8,7 @@ import { GenerationData } from '@/features/power-generation/components/generatio
 export function PowerGenerationPage() {
   return (
     <Layout>
-      <Layout.Main className="grid gap-6 lg:grid-cols-3 overflow-y-auto overflow-x-hidden">
+      <Layout.Main className="grid gap-6 lg:grid-cols-3n overflow-y-auto">
         <div className="lg:col-span-2 h-full">
           <GenerationMonitoring className="h-full" />
         </div>
@@ -17,7 +17,7 @@ export function PowerGenerationPage() {
         </div>
 
         <div className='lg:col-span-3 w-full'>
-        <Dashboard/>
+          <Dashboard />
         </div>
         <div className="lg:col-span-2 h-full">
           <ConsumerUnitsMap />
