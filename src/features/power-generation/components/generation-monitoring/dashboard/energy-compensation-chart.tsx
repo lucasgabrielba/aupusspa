@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { CartesianGrid, Bar, BarChart, XAxis, YAxis } from "recharts";
 import {
   Card,
