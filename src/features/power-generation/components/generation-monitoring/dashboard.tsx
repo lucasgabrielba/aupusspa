@@ -19,7 +19,7 @@ export default function Dashboard() {
   }))
 
   return (
-    <div className="space-y-6 bg-secondary min-h-screen overflow-y-auto">
+    <div className="space-y-6 bg-secondary min-h-screen">
       <div className="grid gap-6 md:grid-cols-2">
         <Card >
           <CardHeader>
