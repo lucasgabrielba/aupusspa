@@ -8,7 +8,7 @@ import { GenerationData } from '@/features/power-generation/components/generatio
 export function PowerGenerationPage() {
   return (
     <Layout>
-      <Layout.Main className="grid gap-6 lg:grid-cols-3 overflow-y-auto items-center">
+      <Layout.Main className="grid gap-6 lg:grid-cols-3 overflow-y-auto justify-center overflow-x-hidden items-center">
         <div className="lg:col-span-2 h-full">
           <GenerationMonitoring className="h-full" />
         </div>
