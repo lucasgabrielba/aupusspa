@@ -19,14 +19,14 @@ export function AppTemplate() {
 
   return (
     <SidebarProvider defaultOpen={false}>
-      <div className="flex h-screen w-screen overflow-hidden">
+      <div className="flex h-screen w-screen overflow-hidden bg-secondary">
         <AppSidebar />
-        <SidebarInset className="flex flex-col w-full h-full">
+        <SidebarInset className="flex flex-col w-full h-full bg-secondary">
           <header className="flex h-12 items-center gap-2 px-4 bg-secondary">
-            <SidebarTrigger  className='w-4 h-4 mr-2'/>
+            <SidebarTrigger className="w-4 h-4 mr-2" />
             <CustomBreadcrumbs />
           </header>
-          <main className="flex-1 overflow-y-auto overflow-x-hidden bg-secondary">
+          <main className="flex-1 overflow-y-auto overflow-x-hidden bg-secondary mx-auto w-full max-w-[1200px] p-4 ">
             <Outlet />
           </main>
           <CommandPallete />
