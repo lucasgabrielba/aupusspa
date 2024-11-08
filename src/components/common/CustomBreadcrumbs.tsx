@@ -52,15 +52,8 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
     navigate(href);
   };
 
-  const isInSettings = location.pathname.startsWith('/configuracoes');
-  const isInFinancial = location.pathname.startsWith('/financeiro');
-
-  // Definição dos itens do menu financeiro
-  const financialMenuItems = [
-    { label: 'Caixa Registradora', href: '/financeiro/caixa-registradora' },
-    { label: 'Registro de Caixas', href: '/financeiro/registros-de-caixas' },
-  ];
-
+  const isInEnergyGeneration = location.pathname.startsWith('/geracao-de-energia');
+  
   // Cria os itens do breadcrumb com a formatação necessária
   const breadcrumbItems: BreadcrumbItem[] =
     location.pathname === '/'
@@ -78,25 +71,14 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
         ];
 
   // Insere o dropdown de "Configurações" se estiver nessa seção
-  if (isInSettings && breadcrumbItems.length > 1) {
+  if (isInEnergyGeneration && breadcrumbItems.length > 1) {
     breadcrumbItems[1] = {
-      label: 'Configurações',
+      label: 'Geração de Energia',
       isDropdown: true,
       dropdownItems: [
-        { label: 'Perfil', href: '/configuracoes/perfil' },
-        { label: 'Usuários', href: '/configuracoes/usuarios' },
-        { label: 'Empresa', href: '/configuracoes/empresa' },
-        { label: 'Preferências de Sistema', href: '/configuracoes/preferencias-de-sistema' },
+        { label: 'Dashboard', href: '/geracao-de-energia/' },
+        { label: 'Beneficiadas', href: '/geracao-de-energia/beneficiadas' },
       ],
-    };
-  }
-
-  // Insere o dropdown de "Financeiro" se estiver nessa seção
-  if (isInFinancial && breadcrumbItems.length > 1) {
-    breadcrumbItems[1] = {
-      label: 'Financeiro',
-      isDropdown: true,
-      dropdownItems: financialMenuItems,
     };
   }
 

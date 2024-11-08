@@ -21,7 +21,7 @@ export const navigationLinks: Array<NavigationLink> = [
   {
     key: 'consumptionMonitoring',
     featureKey: 'ConsumptionMonitoring',
-    path: '/consumption-monitoring',
+    path: '/monitoramento-de-consumo',
     icon: Activity,
     label: 'Monitoramento de Consumo',
     hint: 'Monitoramento de Consumo',
@@ -29,7 +29,7 @@ export const navigationLinks: Array<NavigationLink> = [
   {
     key: 'powerGeneration',
     featureKey: 'PowerGeneration',
-    path: '/power-generation',
+    path: '/geracao-de-energia',
     icon: Zap,
     label: 'Geração de Energia',
     hint: 'Geração de Energia',
@@ -37,7 +37,7 @@ export const navigationLinks: Array<NavigationLink> = [
   {
     key: 'opportunityTracker',
     featureKey: 'OpportunityTracker',
-    path: '/opportunity-tracker',
+    path: '/rastreador-de-oportunidades',
     icon: Magnet,
     label: 'Rastreador de Oportunidades',
     hint: 'Rastreador de Oportunidades',
@@ -45,7 +45,7 @@ export const navigationLinks: Array<NavigationLink> = [
   {
     key: 'invoices',
     featureKey: 'Invoices',
-    path: '/invoices',
+    path: '/faturas',
     icon: DollarSign,
     label: 'Minhas Faturas',
     hint: 'Minhas Faturas',

@@ -6,6 +6,7 @@ import { ConsumptionMonitoringPage } from './pages/consumption-monitoring';
 import { OpportunitiesPage } from './pages/opportunities';
 import { InvoicesPage } from './pages/invoices';
 import { PowerGenerationPage } from './pages/power-generation';
+import { BenefitedPage } from './pages/power-generation/benefited';
 
 export const appRoutes = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ export const appRoutes = createBrowserRouter([
     element: <AppTemplate />,
     children: [
       {
-        path: '/consumption-monitoring',
+        path: '/monitoramento-de-consumo',
         children: [
           {
             index: true,
@@ -30,7 +31,7 @@ export const appRoutes = createBrowserRouter([
         ],
       },
       {
-        path: '/power-generation',
+        path: '/geracao-de-energia',
         children: [
           {
             index: true,
@@ -40,10 +41,18 @@ export const appRoutes = createBrowserRouter([
               // </FeatureWrapper>
             ),
           },
+          {
+            path: 'beneficiadas',
+            element: (
+              // <FeatureWrapper feature="PowerGeneration">
+                <BenefitedPage />
+              // </FeatureWrapper>
+            ),
+          },
         ],
       },
       {
-        path: '/opportunity-tracker',
+        path: '/rasreador-de-oportunidades',
         children: [
           {
             index: true,
@@ -56,7 +65,7 @@ export const appRoutes = createBrowserRouter([
         ],
       },
       {
-        path: '/invoices',
+        path: '/faturas',
         children: [
           {
             index: true,
