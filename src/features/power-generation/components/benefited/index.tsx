@@ -48,42 +48,44 @@ export default function Benefited() {
     <div className="flex flex-col gap-6 w-full">
       {/* Cabeçalho */}
       <div className="flex flex-col lg:flex-row items-center justify-between gap-6 w-full">
-        <div className="flex items-baseline w-full justify-start gap-6">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="w-7 h-7 rounded-sm border border-tertiary bg-card"
-            onClick={() => navigate("/geracao-de-energia")}
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
+        <div className="flex items-baseline w-full justify-start gap-6  flex-col lg:flex-row">
+          <div className="flex gap-6">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="w-7 h-7 rounded-sm border border-tertiary bg-card"
+              onClick={() => navigate("/geracao-de-energia")}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
             <p className="text-xl font-bold">Geração de energia</p>
-            <Badge className="text-muted-foreground rounded-lg border-tertiary">
-              Beneficiados
-            </Badge>
+          </div>
+          <Badge className="text-muted-foreground rounded-lg border-tertiary">
+            Beneficiados
+          </Badge>
         </div>
         {/* Botões */}
         <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto">
           <Button
             variant="outline"
-            size="sm"
-            className="rounded-sm h-8 bg-card border-tertiary w-full md:w-auto"
+            size="default"
+            className="rounded-sm lg:h-8 bg-card border-tertiary w-full md:w-auto"
           >
             <ListFilter className="mr-2 h-4 w-4" />
             Filtrar
           </Button>
           <Button
             variant="outline"
-            size="sm"
-            className="rounded-sm h-8 bg-card border-tertiary w-full md:w-auto"
+            size="default"
+            className="rounded-sm lg:h-8 bg-card border-tertiary w-full md:w-auto"
           >
             <File className="mr-2 h-4 w-4" />
             Exportar
           </Button>
           <Button
             variant="outline"
-            size="sm"
-            className="rounded-sm h-8 bg-card-foreground text-card border-tertiary w-full md:w-auto"
+            size="default"
+            className="rounded-sm lg:h-8 bg-card-foreground text-card border-tertiary w-full md:w-auto"
           >
             <CirclePlus className="mr-2 h-4 w-4" />
             Novo
@@ -151,8 +153,8 @@ export default function Benefited() {
                           item.subgroup === "Verde"
                             ? "bg-green-800 text-green-400 border-none"
                             : item.subgroup === "Azul"
-                            ? "bg-blue-800 text-blue-400 border-none"
-                            : "bg-orange-800 text-orange-400 border-none"
+                              ? "bg-blue-800 text-blue-400 border-none"
+                              : "bg-orange-800 text-orange-400 border-none"
                         }
                       >
                         {item.subgroup}
