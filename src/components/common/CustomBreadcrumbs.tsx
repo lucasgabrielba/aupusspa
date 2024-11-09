@@ -40,8 +40,8 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
   // Configuração das rotas e breadcrumbs
   const breadcrumbConfig: BreadcrumbConfigItem[] = [
     {
-      path: '/',
       label: 'Equatorial',
+      path: null,
     },
     {
       path: '/geracao-de-energia',
