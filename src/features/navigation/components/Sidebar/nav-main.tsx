@@ -51,7 +51,7 @@ export function NavMain() {
                         }
                       }
                     }}
-                    className={`p-4 rounded-full transition-colors ${
+                    className={`p-4 rounded-full transition-colors hover:text-card ${
                       isSelected ? 'bg-card-foreground text-card' : 'hover:bg-card-foreground'
                     }`}
                   >

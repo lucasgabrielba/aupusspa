@@ -52,7 +52,7 @@ export const appRoutes = createBrowserRouter([
         ],
       },
       {
-        path: '/rasreador-de-oportunidades',
+        path: '/rastreador-de-oportunidades',
         children: [
           {
             index: true,

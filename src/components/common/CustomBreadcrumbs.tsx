@@ -57,9 +57,9 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
   // Cria os itens do breadcrumb com a formatação necessária
   const breadcrumbItems: BreadcrumbItem[] =
     location.pathname === '/'
-      ? [{ label: 'Equatorial', href: '/' }]
+      ? [{ label: 'Equatorial',  }]
       : [
-          { label: 'Equatorial', href: '/' },
+          { label: 'Equatorial',  },
           ...location.pathname
             .split('/')
             .filter((segment) => segment)
@@ -71,7 +71,7 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
         ];
 
   // Insere o dropdown de "Configurações" se estiver nessa seção
-  if (isInEnergyGeneration && breadcrumbItems.length > 1) {
+  if (isInEnergyGeneration) {
     breadcrumbItems[1] = {
       label: 'Geração de Energia',
       isDropdown: true,

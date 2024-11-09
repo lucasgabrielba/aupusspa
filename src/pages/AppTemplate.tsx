@@ -26,7 +26,7 @@ export function AppTemplate() {
             <SidebarTrigger className="w-4 h-4 mr-2" />
             <CustomBreadcrumbs />
           </header>
-          <main className="flex-1 overflow-y-auto overflow-x-hidden bg-secondary mx-auto w-full max-w-[1200px]">
+          <main className="flex-1 overflow-y-auto overflow-x-hidden bg-secondary mx-auto w-full max-w-[1200px] items-center justify-center">
             <Outlet />
           </main>
           <CommandPallete />

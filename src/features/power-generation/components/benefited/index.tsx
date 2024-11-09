@@ -60,7 +60,7 @@ export default function Benefited() {
             </Button>
             <p className="text-xl font-bold">Geração de energia</p>
           </div>
-          <Badge className="text-muted-foreground rounded-lg border-tertiary">
+          <Badge className="text-muted-foreground rounded-lg border-tertiary ">
             Beneficiados
           </Badge>
         </div>
