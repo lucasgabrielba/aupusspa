@@ -22,26 +22,11 @@ interface DropdownItem {
   href: string;
 }
 
-interface BreadcrumbItem {
+interface BreadcrumbConfigItem {
+  path: string;
   label: string;
-  href?: string;
   isDropdown?: boolean;
   dropdownItems?: DropdownItem[];
-}
-
-function capitalizeWord(word: string) {
-  if (word.length <= 3) {
-    return word;
-  }
-  return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
-function formatBreadcrumbLabel(segment: string) {
-  return segment
-    .replace(/-/g, ' ') // Substitui hífen por espaço
-    .split(' ')
-    .map(capitalizeWord) // Capitaliza palavras conforme as regras
-    .join(' ');
 }
 
 export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
@@ -52,34 +37,55 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
     navigate(href);
   };
 
-  // Cria os itens do breadcrumb com a formatação necessária
-  const breadcrumbItems: BreadcrumbItem[] = location.pathname === '/'
-    ? [{ label: 'Equatorial' }]
-    : [
-        { label: 'Equatorial' },
-        ...location.pathname
-          .split('/')
-          .filter((segment) => segment)
-          .map((segment, index, arr) => {
-            const href = '/' + arr.slice(0, index + 1).join('/');
-            const label = formatBreadcrumbLabel(segment);
-            return { label, href };
-          }),
-      ];
+  // Configuração das rotas e breadcrumbs
+  const breadcrumbConfig: BreadcrumbConfigItem[] = [
+    {
+      path: '/',
+      label: 'Equatorial',
+    },
+    {
+      path: '/geracao-de-energia',
+      label: 'Geração de Energia',
+      isDropdown: true,
+      dropdownItems: [
+        { label: 'Dashboard', href: '/geracao-de-energia/' },
+        { label: 'Beneficiadas', href: '/geracao-de-energia/beneficiadas' },
+      ],
+    },
+    // Adicione outras rotas conforme necessário
+  ];
 
-  // Verificação mais específica para o item "Geração de Energia"
-  breadcrumbItems.forEach((item, index) => {
-    if (item.href === '/geracao-de-energia') {
-      breadcrumbItems[index] = {
-        label: 'Geração de Energia',
-        isDropdown: true,
-        dropdownItems: [
-          { label: 'Dashboard', href: '/geracao-de-energia/' },
-          { label: 'Beneficiadas', href: '/geracao-de-energia/beneficiadas' },
-        ],
-      };
+  // Função para encontrar os breadcrumbs correspondentes ao caminho atual
+  const getBreadcrumbItems = () => {
+    const pathname = location.pathname.replace(/\/$/, ''); // Remove a barra no final
+    const pathSegments = pathname.split('/').filter(Boolean);
+    const breadcrumbItems: BreadcrumbConfigItem[] = [];
+
+    let accumulatedPath = '';
+    for (const segment of pathSegments) {
+      accumulatedPath += `/${segment}`;
+      const configItem = breadcrumbConfig.find(
+        (item) => item.path === accumulatedPath
+      );
+
+      if (configItem) {
+        breadcrumbItems.push(configItem);
+      } else {
+        // Se não houver configuração específica, crie um item padrão
+        breadcrumbItems.push({
+          path: accumulatedPath,
+          label: segment.charAt(0).toUpperCase() + segment.slice(1),
+        });
+      }
     }
-  });
+
+    // Sempre adiciona a raiz
+    breadcrumbItems.unshift(breadcrumbConfig[0]);
+
+    return breadcrumbItems;
+  };
+
+  const breadcrumbItems = getBreadcrumbItems();
 
   return (
     <Breadcrumb className={className}>
@@ -88,47 +94,35 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
           <React.Fragment key={nanoid()}>
             <BItem>
               {item.isDropdown ? (
-                <>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="flex items-center gap-1 text-secondary-foreground lg:hidden">
-                      {item.label}
-                      <ChevronDownIcon className="h-4 w-4" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start">
-                      {item.dropdownItems?.map((dropdownItem) => (
-                        <DropdownMenuItem key={nanoid()} asChild>
-                          <a
-                            href={dropdownItem.href}
-                            className="text-secondary-foreground"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleClick(dropdownItem.href);
-                            }}
-                          >
-                            {dropdownItem.label}
-                          </a>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <BreadcrumbLink
-                    href={item.href}
-                    className="hidden lg:inline text-secondary-foreground"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleClick(item.href);
-                    }}
-                  >
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="flex items-center gap-1 text-secondary-foreground">
                     {item.label}
-                  </BreadcrumbLink>
-                </>
-              ) : item.href ? (
+                    <ChevronDownIcon className="h-4 w-4" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start">
+                    {item.dropdownItems?.map((dropdownItem) => (
+                      <DropdownMenuItem key={nanoid()} asChild>
+                        <a
+                          href={dropdownItem.href}
+                          className="text-secondary-foreground"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleClick(dropdownItem.href);
+                          }}
+                        >
+                          {dropdownItem.label}
+                        </a>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : item.path ? (
                 <BreadcrumbLink
-                  href={item.href}
+                  href={item.path}
                   className="text-secondary-foreground"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleClick(item.href);
+                    handleClick(item.path);
                   }}
                 >
                   {item.label}
@@ -141,7 +135,7 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
             </BItem>
             {index < breadcrumbItems.length - 1 && (
               <BreadcrumbSeparator className="text-secondary-foreground">
-                {/* <Slash className="h-4 w-4" /> */}
+                {/* Separador */}
               </BreadcrumbSeparator>
             )}
           </React.Fragment>
