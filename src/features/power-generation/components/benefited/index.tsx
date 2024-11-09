@@ -36,7 +36,7 @@ export default function Benefited() {
       distribution: "NN %",
       subgroup: "Verde",
       address:
-        "Logradouro/Baifahjbdasfhasdbfjbdskfbsdfbasdjfksdfbfkdjsbafkasdhjhfbfkasdhbfahbdsfksbfksbdkbjfdjksfkdsrro...",
+        "Logradouro...",
       gd: "Compartilhada/Mod...",
       lastDate: "01/01/25",
       avgConsumption: "0 kWh",
@@ -123,7 +123,7 @@ export default function Benefited() {
               <TableBody>
                 {beneficiaries.map((item, index) => (
                   <TableRow key={index}>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell>
                       <div>
                         <div className="font-medium">
                           {item.generator.code}
@@ -133,7 +133,7 @@ export default function Benefited() {
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell>
                       <div>
                         <div className="font-medium">
                           {item.beneficiary.code}
@@ -143,10 +143,10 @@ export default function Benefited() {
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell>
                       {item.distribution}
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell>
                       <Badge
                         variant="outline"
                         className={
@@ -160,19 +160,19 @@ export default function Benefited() {
                         {item.subgroup}
                       </Badge>
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell >
                       {item.address}
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell >
                       {item.gd}
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell >
                       {item.lastDate}
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell >
                       {item.avgConsumption}
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">
+                    <TableCell >
                       <Button variant="ghost" size="icon">
                         <Loader className="h-4 w-4" />
                       </Button>

@@ -55,29 +55,41 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
     // Adicione outras rotas conforme necessário
   ];
 
+  // Função para formatar o label removendo hífens e capitalizando adequadamente
+  const formatLabel = (label: string) => {
+    return label
+      .split('-')
+      .map((word, index) => {
+        const lowercaseWords = ['de', 'do', 'da', 'e'];
+        if (index > 0 && lowercaseWords.includes(word.toLowerCase())) {
+          return word.toLowerCase();
+        }
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(' ');
+  };
+
   // Função para encontrar os breadcrumbs correspondentes ao caminho atual
   const getBreadcrumbItems = () => {
     const pathname = location.pathname.replace(/\/$/, ''); // Remove a barra no final
     const pathSegments = pathname.split('/').filter(Boolean);
     const breadcrumbItems: BreadcrumbConfigItem[] = [];
 
-    let accumulatedPath = '';
-    for (const segment of pathSegments) {
-      accumulatedPath += `/${segment}`;
-      const configItem = breadcrumbConfig.find(
-        (item) => item.path === accumulatedPath
-      );
+    pathSegments.reduce((acc, segment) => {
+      const currentPath = `${acc}/${segment}`;
+      const configItem = breadcrumbConfig.find((item) => item.path === currentPath);
 
       if (configItem) {
         breadcrumbItems.push(configItem);
       } else {
-        // Se não houver configuração específica, crie um item padrão
         breadcrumbItems.push({
-          path: accumulatedPath,
-          label: segment.charAt(0).toUpperCase() + segment.slice(1),
+          path: currentPath,
+          label: formatLabel(segment),
         });
       }
-    }
+
+      return currentPath;
+    }, '');
 
     // Sempre adiciona a raiz
     breadcrumbItems.unshift(breadcrumbConfig[0]);
