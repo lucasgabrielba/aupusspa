@@ -52,35 +52,34 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
     navigate(href);
   };
 
-  const isInEnergyGeneration = location.pathname.startsWith('/geracao-de-energia');
-  
   // Cria os itens do breadcrumb com a formatação necessária
-  const breadcrumbItems: BreadcrumbItem[] =
-    location.pathname === '/'
-      ? [{ label: 'Equatorial',  }]
-      : [
-          { label: 'Equatorial',  },
-          ...location.pathname
-            .split('/')
-            .filter((segment) => segment)
-            .map((segment, index, arr) => {
-              const href = arr.slice(0, index + 1).join('/') || '/';
-              const label = formatBreadcrumbLabel(segment);
-              return { label, href };
-            }),
-        ];
+  const breadcrumbItems: BreadcrumbItem[] = location.pathname === '/'
+    ? [{ label: 'Equatorial' }]
+    : [
+        { label: 'Equatorial' },
+        ...location.pathname
+          .split('/')
+          .filter((segment) => segment)
+          .map((segment, index, arr) => {
+            const href = '/' + arr.slice(0, index + 1).join('/');
+            const label = formatBreadcrumbLabel(segment);
+            return { label, href };
+          }),
+      ];
 
-  // Insere o dropdown de "Configurações" se estiver nessa seção
-  if (isInEnergyGeneration) {
-    breadcrumbItems[1] = {
-      label: 'Geração de Energia',
-      isDropdown: true,
-      dropdownItems: [
-        { label: 'Dashboard', href: '/geracao-de-energia/' },
-        { label: 'Beneficiadas', href: '/geracao-de-energia/beneficiadas' },
-      ],
-    };
-  }
+  // Verificação mais específica para o item "Geração de Energia"
+  breadcrumbItems.forEach((item, index) => {
+    if (item.href === '/geracao-de-energia') {
+      breadcrumbItems[index] = {
+        label: 'Geração de Energia',
+        isDropdown: true,
+        dropdownItems: [
+          { label: 'Dashboard', href: '/geracao-de-energia/' },
+          { label: 'Beneficiadas', href: '/geracao-de-energia/beneficiadas' },
+        ],
+      };
+    }
+  });
 
   return (
     <Breadcrumb className={className}>
@@ -96,8 +95,8 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
                       <ChevronDownIcon className="h-4 w-4" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start">
-                      {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
-                        <DropdownMenuItem key={dropdownIndex} asChild>
+                      {item.dropdownItems?.map((dropdownItem) => (
+                        <DropdownMenuItem key={nanoid()} asChild>
                           <a
                             href={dropdownItem.href}
                             className="text-secondary-foreground"

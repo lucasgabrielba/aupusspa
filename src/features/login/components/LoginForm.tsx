@@ -78,7 +78,7 @@ export default function LoginCard() {
         setUser(mockUser);
         setOrganizations([mockOrganization]);
         setOrganization(mockOrganization.id);
-        navigate('/consumption-monitoring');
+        navigate('/monitoramento-de-consumo');
       } else {
         alert('Credenciais inválidas');
       }

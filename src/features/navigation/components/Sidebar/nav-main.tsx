@@ -37,7 +37,7 @@ export function NavMain() {
               asChild
               className="group/collapsible"
             >
-              <SidebarMenuItem className="rounded-full">
+              <SidebarMenuItem className="rounded-full my-0.5">
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton
                     tooltip={item.label}

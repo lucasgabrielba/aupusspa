@@ -79,7 +79,7 @@ export const appRoutes = createBrowserRouter([
       },
       {
         path: '*',
-        element: <Navigate to={'/'} />,
+        element: <Navigate to={'/monitoramento-de-consumo'} />,
       },
     ],
   },
