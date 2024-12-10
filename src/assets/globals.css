@@ -49,7 +49,8 @@
     --warning-foreground-hover: hsl(48, 91%, 84%);
 
     --muted: hsl(0, 0%, 98%);
-    --muted-foreground: hsl(210, 7%, 22%);
+    --muted-foreground: hsl(0, 0%, 41%);
+    --muted-foreground-2: hsl(210, 4%, 29%);
     --muted-hover: hsl(0, 0%, 86%);
     --muted-foreground-hover: hsl(210, 7%, 17%);
 
@@ -166,7 +167,8 @@
     --warning-foreground-hover: hsl(38, 87%, 45%);
 
     --muted: hsl(217.2, 32.6%, 17.5%);
-    --muted-foreground: hsl(0, 0%, 95%);
+    --muted-foreground: hsl(0, 0%, 52%);
+    --muted-foreground-2: hsl(0, 0%, 83%);
     --muted-hover: hsl(217.2, 27.6%, 22.5%);
     --muted-foreground-hover: hsl(215, 15.2%, 70.1%);
 

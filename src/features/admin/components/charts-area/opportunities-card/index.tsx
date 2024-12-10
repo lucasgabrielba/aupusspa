@@ -32,7 +32,7 @@ export function OpportunitiesCard() {
             type="category"
             tickLine={false}
             axisLine={false}
-            tick={{ fill: "var(--color-foreground)" }}
+            tick={{ fill: "var(--card-foreground)" }}
           />
           <XAxis type="number" hide />
           <Bar
