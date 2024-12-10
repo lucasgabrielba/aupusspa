@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Menubar } from "@/components/ui/menubar";
 import { MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
-import { cn } from "@/lib/utils";
 import { Building, ChevronDown, DollarSign, FileOutput, Zap } from "lucide-react";
 import React from "react";
 import { XAxis, YAxis, Bar, BarChart } from "recharts";
@@ -15,7 +14,6 @@ export default function EnergyDashboard() {
   const kWh = 54.87;
   const highestMonth = "Outubro";
   const highestCost = 50;
-  const consumptionStatus = "normal";
   const consumptionPercentage = 70;
 
   const [selected, setSelected] = React.useState("Mês atual");
@@ -26,19 +24,6 @@ export default function EnergyDashboard() {
     "1 ano",
     "Selecionar período",
   ];
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "economy":
-        return "bg-green-500";
-      case "normal":
-        return "bg-blue-500";
-      case "excess":
-        return "bg-red-500";
-      default:
-        return "bg-gray-500";
-    }
-  };
 
 
   const handleSelect = (option) => {
@@ -158,7 +143,7 @@ export default function EnergyDashboard() {
               <CardDescription>{units} unidades no mês atual</CardDescription>
             </CardHeader>
 
-            <CardContent className="flex-grow flex flex-col justify-center space-y-4 ">
+            <CardContent className="flex-grow flex flex-col justify-center space-y-4">
               <div className="flex flex-col items-baseline gap-2 lg:flex-row">
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl font-medium">R$</span>
@@ -167,11 +152,28 @@ export default function EnergyDashboard() {
                 <p className="text-sm text-card-foreground">Custo total dos últimos 6 meses</p>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-4">
+                {/* Barra para "Atual" */}
+                <div className="h-10 w-full bg-transparent rounded-xs overflow-hidden relative ">
+                  <div
+                    className="h-full rounded-xs flex items-center justify-start text-card text-md px-4"
+                    style={{
+                      width: `${consumptionPercentage}%`,
+                      backgroundColor: "rgb(236, 72, 153)", // Cor para "Atual"
+                    }}
+                  >
+                    {kWh} kWh
+                  </div>
+                </div>
+
+                {/* Barra para "Anterior" */}
                 <div className="h-10 w-full bg-transparent rounded-xs overflow-hidden relative">
                   <div
-                    className={cn("h-full rounded-xs flex items-center justify-start text-card text-md px-4", getStatusColor(consumptionStatus))}
-                    style={{ width: `${consumptionPercentage}%` }}
+                    className="h-full rounded-xs flex items-center justify-start text-card text-md px-4"
+                    style={{
+                      width: `${consumptionPercentage}%`,
+                      backgroundColor: "rgb(59, 130, 246)", // Cor para "Anterior"
+                    }}
                   >
                     {kWh} kWh
                   </div>
@@ -185,6 +187,8 @@ export default function EnergyDashboard() {
               </p>
             </CardFooter>
           </Card>
+
+
 
           <Card className="rounded-sm">
             <CardHeader className="pb-2">
