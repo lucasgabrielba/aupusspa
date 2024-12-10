@@ -29,7 +29,7 @@ const mockOrganization: OrganizationDTO = {
     withdrawal_terms: 'Termos de retirada...',
     warranty_terms: 'Termos de garantia...',
   },
-  abilities: ['Dashboard', 'Settings', 'ConsumptionMonitoring', 'PowerGeneration'],
+  abilities: ['Dashboard', 'Settings', 'ConsumptionMonitoring', 'PowerGeneration', 'Admin'],
   brand: {
     name: 'Equatorial Energy',
     logoPath: '/path/to/logo.png',

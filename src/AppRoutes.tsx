@@ -7,6 +7,7 @@ import { OpportunitiesPage } from './pages/opportunities';
 import { InvoicesPage } from './pages/invoices';
 import { PowerGenerationPage } from './pages/power-generation';
 import { BenefitedPage } from './pages/power-generation/benefited';
+import { AdminPage } from './pages/admin';
 
 export const appRoutes = createBrowserRouter([
   {
@@ -72,6 +73,19 @@ export const appRoutes = createBrowserRouter([
             element: (
               // <FeatureWrapper feature="Invoices">
                 <InvoicesPage />
+              // </FeatureWrapper>
+            ),
+          },
+        ],
+      },
+      {
+        path: '/admin',
+        children: [
+          {
+            index: true,
+            element: (
+              // <FeatureWrapper feature="Invoices">
+                <AdminPage />
               // </FeatureWrapper>
             ),
           },

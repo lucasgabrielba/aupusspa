@@ -5,6 +5,7 @@ import {
   Zap,
   Magnet,
   DollarSign,
+  BriefcaseBusiness
 } from 'lucide-react';
 
 export type NavigationLink = {
@@ -49,5 +50,13 @@ export const navigationLinks: Array<NavigationLink> = [
     icon: DollarSign,
     label: 'Minhas Faturas',
     hint: 'Minhas Faturas',
+  },
+  {
+    key: 'admin',
+    featureKey: 'Admin',
+    path: '/admin',
+    icon: BriefcaseBusiness,
+    label: 'Administrador',
+    hint: 'Administrador',
   },
 ];

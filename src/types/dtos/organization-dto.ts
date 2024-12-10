@@ -51,3 +51,4 @@ export type OrganizationAbilities =
   | 'PowerGeneration'
   | 'OpportunityTracker'
   | 'Invoices'
+  | 'Admin';
