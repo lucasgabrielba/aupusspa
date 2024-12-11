@@ -37,7 +37,6 @@ interface TitleCardProps {
 export function TitleCardAdmin({
   title,
   description,
-  showConcessionaria = false,
 }: TitleCardProps) {
   const billingData: BillingData = {
     month: "outubro",
@@ -87,27 +86,17 @@ export function TitleCardAdmin({
           <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardFooter
-          className={`flex items-center justify-start p-4 gap-6 bg-tertiary rounded-b-sm ${
-            billingData?.hasInvoice ? "border-none" : "border-t"
-          }`}
+          className={`flex items-center justify-start p-4 gap-6 bg-tertiary rounded-b-sm ${billingData?.hasInvoice ? "border-none" : "border-t"
+            }`}
         >
-          {showConcessionaria && (
-            <div className="ml-2">
-              <p className="text-md font-semibold text-card-foreground">
-                Exibir de todas as concessionárias ({concessionarias.length})
-              </p>
-              <p className="text-xs">{`${selectedUnits.length} clientes atualmente selecionados`}</p>
-            </div>
-          )}
+
           <div className="ml-2">
             <p className="text-md font-semibold text-card-foreground">
-              Exibir de todas as unidades geradoras ({selectedUnits.length || 0})
+              Exibir de todas as concessionárias ({concessionarias.length})
             </p>
-            <p className="text-xs">
-              {selectedUnits.length || 0} unidades consumidoras atualmente
-              selecionadas.
-            </p>
+            <p className="text-xs">{`${selectedUnits.length} clientes atualmente selecionados`}</p>
           </div>
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
