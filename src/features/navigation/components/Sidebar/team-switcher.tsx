@@ -24,7 +24,7 @@ export function TeamSwitcher() {
   const { organization, organizations, setOrganization } = useOrganizationsStore();
   const queryClient = useQueryClient();
 
-  const logo = 'https://s3-alpha-sig.figma.com/img/7769/f4aa/a478e0a11f48fe90acc475048958db34?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OR2esobfQAg4DgbOlbjz1VZ6jzxmhj-Be4WOuWw8njTfnM2aTMO9qjV21os7cfey2NZ1hj~rRVqCNSX6KEnWatDTG4gMUno7unD9cmu2oeAa34QUWYYo45DtDS4A3R~c5-Hg4JTedHgFkwoeh6onUvSUulNbK1BGAmW8WSIKxZlSz85NOV6gA9Wc9VBBSQmjcma-a4KzpY6tPtaCaDPq2lqwYtfgYxsiDcs8o856X6Mv22i6wJAOTNDKsnXMaGTJhVexVRaMtvxUdQynrJdgJDyxNOW2v2ase514WS25xgQKkWxhUzk15-GcaHRfogf9NelI7Hk4vFsacPcnl12glQ__';
+  // const logo = 'https://s3-alpha-sig.figma.com/img/7769/f4aa/a478e0a11f48fe90acc475048958db34?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OR2esobfQAg4DgbOlbjz1VZ6jzxmhj-Be4WOuWw8njTfnM2aTMO9qjV21os7cfey2NZ1hj~rRVqCNSX6KEnWatDTG4gMUno7unD9cmu2oeAa34QUWYYo45DtDS4A3R~c5-Hg4JTedHgFkwoeh6onUvSUulNbK1BGAmW8WSIKxZlSz85NOV6gA9Wc9VBBSQmjcma-a4KzpY6tPtaCaDPq2lqwYtfgYxsiDcs8o856X6Mv22i6wJAOTNDKsnXMaGTJhVexVRaMtvxUdQynrJdgJDyxNOW2v2ase514WS25xgQKkWxhUzk15-GcaHRfogf9NelI7Hk4vFsacPcnl12glQ__';
 
   const handleSetOrganization = (orgId: string) => {
     queryClient.clear();
@@ -49,8 +49,7 @@ export function TeamSwitcher() {
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-card-primary text-card-primary-foreground">
                 {organization?.brand.logoPath ? (
                   <img
-                    src={logo}
-                    alt={`${organization?.name} logo`}
+                    src={'https://play-lh.googleusercontent.com/tiksHECQh6MNAZHmW45xO38h8hJSLXYx7c5SrfzyMAvjcTQQX5Qt8XBSFV3xI4S0el3Q=w240-h480'}
                     className="w-8 h-8 rounded-sm"
                   />
                 ) : (
@@ -58,7 +57,7 @@ export function TeamSwitcher() {
                 )}
               </div>
               <div className="flex-1 text-left ml-2 text-sm leading-tight text-card-foreground">
-                <span className="truncate font-semibold">
+                <span className="font-semibold break-words">
                   {organization?.name || "Select Organization"}
                 </span>
               </div>
@@ -81,8 +80,7 @@ export function TeamSwitcher() {
                 <div className="flex size-6 items-center justify-center rounded-sm border">
                   {org?.brand.logoPath ? (
                     <img
-                      src={logo}
-                      alt={`${org?.name} logo`}
+                      src={'https://play-lh.googleusercontent.com/tiksHECQh6MNAZHmW45xO38h8hJSLXYx7c5SrfzyMAvjcTQQX5Qt8XBSFV3xI4S0el3Q=w240-h480'}
                       className="w-6 h-6 rounded-sm"
                     />
                   ) : (

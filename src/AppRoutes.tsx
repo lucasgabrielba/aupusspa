@@ -1,6 +1,5 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { Login } from './pages/login';
-// import { FeatureWrapper } from './components/common/FeatureWrapper';
 import { AppTemplate } from './pages/AppTemplate';
 import { ConsumptionMonitoringPage } from './pages/consumption-monitoring';
 import { OpportunitiesPage } from './pages/opportunities';
@@ -8,6 +7,7 @@ import { InvoicesPage } from './pages/invoices';
 import { PowerGenerationPage } from './pages/power-generation';
 import { BenefitedPage } from './pages/power-generation/benefited';
 import { AdminPage } from './pages/admin';
+import { ManagementFrameworkPage } from './pages/admin/management-framework';
 
 export const appRoutes = createBrowserRouter([
   {
@@ -19,49 +19,32 @@ export const appRoutes = createBrowserRouter([
     element: <AppTemplate />,
     children: [
       {
-        path: '/monitoramento-de-consumo',
-        children: [
-          {
-            index: true,
-            element: (
-              // <FeatureWrapper feature="ConsumptionMonitoring">
-                <ConsumptionMonitoringPage />
-              // </FeatureWrapper>
-            ),
-          },
-        ],
+        index: true,
+        element: <Navigate to="/monitoramento-de-consumo" />,
+      },
+      {
+        path: 'monitoramento-de-consumo',
+        element: <ConsumptionMonitoringPage />,
       },
       {
         path: '/geracao-de-energia',
         children: [
           {
             index: true,
-            element: (
-              // <FeatureWrapper feature="PowerGeneration">
-                <PowerGenerationPage />
-              // </FeatureWrapper>
-            ),
+            element: <PowerGenerationPage />,
           },
           {
             path: 'beneficiadas',
-            element: (
-              // <FeatureWrapper feature="PowerGeneration">
-                <BenefitedPage />
-              // </FeatureWrapper>
-            ),
+            element: <BenefitedPage />,
           },
         ],
       },
       {
-        path: '/rastreador-de-oportunidades',
+        path: 'rastreador-de-oportunidades',
         children: [
           {
             index: true,
-            element: (
-              // <FeatureWrapper feature="OpportunityTracker">
-                <OpportunitiesPage />
-              // </FeatureWrapper>
-            ),
+            element: <OpportunitiesPage />,
           },
         ],
       },
@@ -70,30 +53,30 @@ export const appRoutes = createBrowserRouter([
         children: [
           {
             index: true,
-            element: (
-              // <FeatureWrapper feature="Invoices">
-                <InvoicesPage />
-              // </FeatureWrapper>
-            ),
+            element: <InvoicesPage />,
           },
         ],
       },
       {
-        path: '/admin',
+        path: '/administrador',
         children: [
           {
             index: true,
-            element: (
-              // <FeatureWrapper feature="Invoices">
-                <AdminPage />
-              // </FeatureWrapper>
-            ),
+            element: <Navigate to="/administrador/monitoramento-de-clientes" />,
+          },
+          {
+            path: 'monitoramento-de-clientes',
+            element: <AdminPage />,
+          },
+          {
+            path: 'quadro-de-gerenciamento',
+            element: <ManagementFrameworkPage />,
           },
         ],
       },
       {
         path: '*',
-        element: <Navigate to={'/monitoramento-de-consumo'} />,
+        element: <Navigate to="/monitoramento-de-consumo" />,
       },
     ],
   },

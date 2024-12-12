@@ -1,13 +1,10 @@
-
-
-import { ChevronRight } from "lucide-react"
+import { ChevronRight } from "lucide-react";
 import { useNavigate, useLocation } from 'react-router-dom';
-
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/components/ui/collapsible";
 import {
   SidebarGroup,
   SidebarMenu,
@@ -17,7 +14,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import { navigationLinks } from "../../utils/navigation-links";
 
 export function NavMain() {
@@ -29,8 +26,9 @@ export function NavMain() {
     <SidebarGroup>
       <SidebarMenu>
         {navigationLinks.map((item) => {
-          const isSelected = location.pathname === item.path;
-
+          const hasActiveChild = item.links?.some(subItem => location.pathname === subItem.path);
+          const isSelected = item.links ? hasActiveChild : location.pathname === item.path;
+          
           return (
             <Collapsible
               key={item.key}
@@ -45,33 +43,53 @@ export function NavMain() {
                       if (!item.links) {
                         navigate(item.path);
                         if (isMobile) setOpenMobile(false);
-                      } else {
-                        if (!isMobile) {
-                          setOpen(true);
-                        }
+                      } else if (!isMobile) {
+                        setOpen(true);
                       }
                     }}
-                    className={`p-4 rounded-full transition-colors hover:text-card ${
-                      isSelected ? 'bg-card-foreground text-card' : 'hover:bg-card-foreground'
-                    }`}
+                    className={`
+                      p-4 rounded-full transition-colors duration-200 select-none flex items-center gap-3
+                      ${isSelected 
+                        ? 'bg-card-foreground text-card' 
+                        : 'hover:bg-card'
+                      }
+                    `}
                   >
                     {item.icon && (
                       <item.icon
-                        className={`w-5 h-5 ${isSelected ? 'text-card' : ''}`}
+                        className={`w-5 h-5 shrink-0 ${isSelected 
+                          ? 'text-card' 
+                          : 'text-card-foreground'
+                        }`}
                       />
                     )}
-                    <span className="text-sm font-medium">{item.label}</span>
+                    <span className={`text-sm font-medium flex-1 ${isSelected 
+                      ? 'text-card' 
+                      : 'text-card-foreground'
+                    }`}>
+                      {item.label}
+                    </span>
                     {item.links && (
-                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 w-5 h-5" />
+                      <ChevronRight 
+                        className={`
+                          w-5 h-5 shrink-0 transition-transform duration-200 
+                          group-data-[state=open]/collapsible:rotate-90
+                          ${isSelected 
+                            ? 'text-card' 
+                            : 'text-card-foreground'
+                          }
+                        `}
+                      />
                     )}
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
+
                 {item.links && (
                   <CollapsibleContent>
-                    <SidebarMenuSub>
+                    <SidebarMenuSub className="pl-4 mt-1">
                       {item.links.map((subItem) => {
                         const isSubItemSelected = location.pathname === subItem.path;
-
+                        
                         return (
                           <SidebarMenuSubItem key={subItem.key} className="rounded-full">
                             <SidebarMenuSubButton
@@ -79,16 +97,28 @@ export function NavMain() {
                                 navigate(subItem.path);
                                 if (isMobile) setOpenMobile(false);
                               }}
-                              className={`p-4 rounded-full cursor-pointer transition-colors ${
-                                isSubItemSelected ? 'bg-card-foreground text-card' : 'hover:bg-card-foreground'
-                              }`}
+                              className={`
+                                p-3 rounded-full transition-colors duration-200 select-none flex items-center gap-3
+                                ${isSubItemSelected 
+                                  ? 'bg-card-foreground text-card' 
+                                  : 'hover:bg-card'
+                                }
+                              `}
                             >
                               {subItem.icon && (
                                 <subItem.icon
-                                  className={`w-5 h-4 ${isSubItemSelected ? 'text-card-foreground' : ''}`}
+                                  className={`w-4 h-4 shrink-0 ${isSubItemSelected 
+                                    ? 'text-card' 
+                                    : 'text-card-foreground'
+                                  }`}
                                 />
                               )}
-                              <span className="text-sm">{subItem.label}</span>
+                              <span className={`text-sm flex-1 ${isSubItemSelected 
+                                ? 'text-card' 
+                                : 'text-card-foreground'
+                              }`}>
+                                {subItem.label}
+                              </span>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         );
@@ -102,5 +132,5 @@ export function NavMain() {
         })}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

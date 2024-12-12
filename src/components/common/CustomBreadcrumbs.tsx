@@ -37,7 +37,6 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
     navigate(href);
   };
 
-  // Configuração das rotas e breadcrumbs
   const breadcrumbConfig: BreadcrumbConfigItem[] = [
     {
       label: 'Equatorial',
@@ -52,10 +51,17 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
         { label: 'Beneficiadas', href: '/geracao-de-energia/beneficiadas' },
       ],
     },
-    // Adicione outras rotas conforme necessário
+    {
+      path: '/administrador',
+      label: 'Administrador',
+      isDropdown: true,
+      dropdownItems: [
+        { label: 'Monitoramento de Clientes', href: '/administrador/monitoramento-de-clientes' },
+        { label: 'Quadro de Gerenciamento', href: '/administrador/quadro-de-gerenciamento' },
+      ],
+    },
   ];
 
-  // Função para formatar o label removendo hífens e capitalizando adequadamente
   const formatLabel = (label: string) => {
     return label
       .split('-')
@@ -69,9 +75,8 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
       .join(' ');
   };
 
-  // Função para encontrar os breadcrumbs correspondentes ao caminho atual
   const getBreadcrumbItems = () => {
-    const pathname = location.pathname.replace(/\/$/, ''); // Remove a barra no final
+    const pathname = location.pathname.replace(/\/$/, '');
     const pathSegments = pathname.split('/').filter(Boolean);
     const breadcrumbItems: BreadcrumbConfigItem[] = [];
 
@@ -91,7 +96,6 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
       return currentPath;
     }, '');
 
-    // Sempre adiciona a raiz
     breadcrumbItems.unshift(breadcrumbConfig[0]);
 
     return breadcrumbItems;
@@ -105,7 +109,14 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
         {breadcrumbItems.map((item, index) => (
           <React.Fragment key={nanoid()}>
             <BItem>
-              {item.isDropdown ? (
+              {index === 0 ? (
+                <div className="flex items-center gap-2">
+                  <img src="/logoaupus.svg" alt="Aupus Logo" className="w-16 mr-3" />
+                  <BreadcrumbPage className="text-secondary-foreground font-semibold">
+                    {item.label}
+                  </BreadcrumbPage>
+                </div>
+              ) : item.isDropdown ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center gap-1 text-secondary-foreground">
                     {item.label}

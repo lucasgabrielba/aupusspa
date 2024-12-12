@@ -5,7 +5,9 @@ import {
   Zap,
   Magnet,
   DollarSign,
-  BriefcaseBusiness
+  BriefcaseBusiness,
+  UsersRound,
+  BarChart2,
 } from 'lucide-react';
 
 export type NavigationLink = {
@@ -54,9 +56,27 @@ export const navigationLinks: Array<NavigationLink> = [
   {
     key: 'admin',
     featureKey: 'Admin',
-    path: '/admin',
+    path: '/administrador/monitoramento-de-clientes',
     icon: BriefcaseBusiness,
     label: 'Administrador',
     hint: 'Administrador',
+    links: [
+      {
+        key: 'admin',
+        featureKey: 'Admin',
+        path: '/administrador/monitoramento-de-clientes',
+        icon: UsersRound,
+        label: 'Monitoramento de Clientes',
+        hint: 'Monitoramento de Clientes',
+      },
+      {
+        key: 'admin',
+        featureKey: 'Admin',
+        path: '/administrador/quadro-de-gerenciamento',
+        icon: BarChart2,
+        label: 'Quadro de Gerenciamento',
+        hint: 'Quadro de Gerenciamento',
+      },
+    ],
   },
 ];
