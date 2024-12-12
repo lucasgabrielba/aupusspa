@@ -41,7 +41,7 @@ const chartConfig = {
 
 export function EnergyConsumptionCard() {
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
         <CardTitle>Consumo de Energia</CardTitle>
         <CardDescription>Último mês</CardDescription>

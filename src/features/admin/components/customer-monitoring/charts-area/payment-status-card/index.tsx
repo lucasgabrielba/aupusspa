@@ -1,62 +1,70 @@
-import { RadialBar, RadialBarChart } from "recharts";
-import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
-const chartData = [
-  { name: "Adimplentes", R$: 110329, fill: "hsl(var(--chart-3))" },
-  { name: "Inadimplentes", R$: 5329, fill: "hsl(var(--chart-1))" },
-];
+import { RadialBar, RadialBarChart } from 'recharts';
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 
-const chartConfig = {
-  Adimplentes: {
-    label: "Adimplentes",
-    color: "hsl(var(--chart-1))",
-  },
-  Inadimplentes: {
-    label: "Inadimplentes",
-    color: "hsl(var(--chart-2))",
-  },
-} satisfies ChartConfig;
+export const PaymentStatusCard = () => {
+  const data = [
+    { name: "Adimplentes", value: 110329, fill: "#36A2EB" },
+    { name: "Inadimplentes", value: 5329, fill: "#FF6384" }
+  ];
 
-export function PaymentStatusCard() {
+  const chartConfig = {
+    Adimplentes: {
+      label: "Adimplentes",
+      color: "#36A2EB"
+    },
+    Inadimplentes: {
+      label: "Inadimplentes",
+      color: "#FF6384"
+    }
+  };
+
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(value);
+  };
+
   return (
-    <Card className="flex flex-col">
+    <Card className="w-full max-w-md">
       <CardHeader className="pb-4">
         <div>
-          <CardDescription className="">Adimplentes</CardDescription>
+          <CardDescription>Adimplentes</CardDescription>
           <div className="flex gap-2 items-baseline">
-            <div className="text-lg font-bold">R$ 110.329,00</div>
-            <div className="text-xs ">120 usuários</div>
+            <div className="text-lg font-bold">{formatCurrency(110329)}</div>
+            <div className="text-xs">120 usuários</div>
           </div>
         </div>
         <div className="mt-4">
-          <CardDescription className="">Inadimplentes</CardDescription>
+          <CardDescription>Inadimplentes</CardDescription>
           <div className="flex gap-2 items-baseline">
-            <div className="text-lg font-bold">R$ 5.329,23</div>
-            <div className="text-xs ">15 usuários</div>
+            <div className="text-lg font-bold">{formatCurrency(5329.23)}</div>
+            <div className="text-xs">15 usuários</div>
           </div>
         </div>
       </CardHeader>
       <CardContent className="flex-1 pb-0 flex justify-center items-center">
-        <ChartContainer
-          config={chartConfig}
-          className="aspect-square max-h-[250px] mx-auto"
-        >
+        <ChartContainer config={chartConfig} className="h-64 w-full">
           <RadialBarChart
-            data={chartData}
-            innerRadius={40}
-            outerRadius={100}
-            barSize={100}
+            width={250}
+            height={250}
+            innerRadius="30%"
+            outerRadius="100%"
+            data={data}
             startAngle={90}
-            endAngle={-20}
+            endAngle={-270}
           >
             <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel nameKey="name" />}
+              content={<ChartTooltipContent 
+                formatter={(value) => formatCurrency(value)}
+                nameKey="name"
+              />}
             />
             <RadialBar
-              dataKey="R$"
-              background={{ fill: "hsl(var(--chart-background))" }}
+              background
+              dataKey="value"
               cornerRadius={5}
             />
           </RadialBarChart>
@@ -64,4 +72,4 @@ export function PaymentStatusCard() {
       </CardContent>
     </Card>
   );
-}
+};
