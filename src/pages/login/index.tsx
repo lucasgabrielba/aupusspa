@@ -23,6 +23,10 @@ export function Login() {
     <div className="flex h-screen w-screen items-center justify-center">
       <Layout>
         <Layout.Main className="flex items-center justify-center">
+          <img
+            src="/logoaupus.svg" alt="Aupus Logo"
+            className="w-60 rounded-sm"
+          />
           <LoginForm />
         </Layout.Main>
       </Layout>
