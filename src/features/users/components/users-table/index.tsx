@@ -123,12 +123,12 @@ export function UsersTable() {
             </DropdownMenu>
           </div>
 
-          <div className="hidden lg:flex gap-2 bg-secondary rounded-sm h-10 p-1 items-center w-auto justify-start">
+          <div className="hidden lg:flex gap-2 bg-secondary rounded-sm h-10 p-1 items-center justify-start">
             {filtros.map((f) => (
               <Button
                 key={f}
                 className={`px-4 py-1 h-8 text-sm font-medium rounded-xs ${selectedFiltro === f
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-card text-card-foreground"
                     : "bg-secondary hover:bg-card hover:text-card-foreground text-card-foreground"
                   }`}
                 onClick={() => setSelectedFiltro(f)}

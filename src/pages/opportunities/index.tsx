@@ -14,7 +14,7 @@ export function OpportunitiesPage() {
         <div className="flex flex-wrap lg:flex-nowrap gap-4 w-full">
           <Card className="flex-1 min-w-[300px] lg:w-1/2 rounded-sm bg-card">
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">Lucro Potencial Mensal por Categoria</CardTitle>
+              <CardTitle className="text-lg font-semibold">Nova carga</CardTitle>
               <CardDescription>Descubra novas oportunidades de aumento de lucro adaptadas para o seu negócio!</CardDescription>
             </CardHeader>
             <CardContent className="text-sm text-card-foreground space-y-2">
@@ -26,7 +26,19 @@ export function OpportunitiesPage() {
 
           <Card className="flex-1 min-w-[300px] lg:w-1/2 rounded-sm bg-card">
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">Média de consumo por unidade consumidoras</CardTitle>
+              <CardTitle className="text-lg font-semibold">Nova demanda</CardTitle>
+              <CardDescription>Compare o consumo médio entre unidades e identifique onde economizar!</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-card-foreground space-y-2">
+              <Button variant="outline" className="bg-card-foreground text-card rounded-sm border-none">
+              Eu quero saber mais
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="flex-1 min-w-[300px] lg:w-1/2 rounded-sm bg-card">
+            <CardHeader>
+              <CardTitle className="text-lg font-semibold">Estudos especializados</CardTitle>
               <CardDescription>Compare o consumo médio entre unidades e identifique onde economizar!</CardDescription>
             </CardHeader>
             <CardContent className="text-sm text-card-foreground space-y-2">
