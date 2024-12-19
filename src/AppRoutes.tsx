@@ -12,6 +12,7 @@ import { FeatureWrapper } from './components/common/FeatureWrapper';
 import { PowerPlantsPage } from './pages/power-plants';
 import { UsersPage } from './pages/users';
 import { ConsumptionMonitoringRenterPage } from './pages/consumption-monitoring-renter';
+import { DefaultRedirect } from './components/common/default-redirect';
 
 
 export const appRoutes = createBrowserRouter([
@@ -26,9 +27,7 @@ export const appRoutes = createBrowserRouter([
       {
         index: true,
         element: (
-          <FeatureWrapper feature="ConsumptionMonitoring">
-            <Navigate to="/monitoramento-de-consumo" />
-          </FeatureWrapper>
+            <DefaultRedirect />
         ),
       },
       {

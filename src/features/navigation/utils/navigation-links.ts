@@ -1,3 +1,4 @@
+import { ChartColumnBig } from '@/components/icons/ChartColumnBig';
 import { ChartNoAxesColumn } from '@/components/icons/ChartNoAxesColumn';
 import { UserAbilities } from '@/types/dtos/user-dto';
 import {
@@ -30,6 +31,14 @@ export const navigationLinks: Array<NavigationLink> = [
     icon: ChartNoAxesColumn ,
     label: 'Monitoramento de Clientes',
     hint: 'Monitoramento de Clientes',
+  },
+  {
+    key: 'powerPlants',
+    featureKey: 'PowerPlants',
+    path: '/minhas-usinas',
+    icon: Factory,
+    label: 'Minhas Usinas',
+    hint: 'Minhas Usinas',
   },
   {
     key: 'admin',
@@ -66,20 +75,20 @@ export const navigationLinks: Array<NavigationLink> = [
       {
         key: 'powerGeneration',
         featureKey: 'PowerGeneration',
+        path: '/geracao-de-energia',
+        icon: ChartColumnBig,
+        label: 'Dashboard',
+        hint: 'Dashboard',
+      },
+      {
+        key: 'powerGeneration',
+        featureKey: 'PowerGeneration',
         path: '/geracao-de-energia/beneficiadas',
         icon: SquareActivity,
         label: 'Beneficiadas',
         hint: 'Beneficiadas',
       }
     ]
-  },
-  {
-    key: 'powerPlants',
-    featureKey: 'PowerPlants',
-    path: '/minhas-usinas',
-    icon: Factory,
-    label: 'Minhas Usinas',
-    hint: 'Minhas Usinas',
   },
   {
     key: 'opportunityTracker',

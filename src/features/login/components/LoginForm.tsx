@@ -121,7 +121,7 @@ export default function LoginCard() {
         setUser(user);
         setOrganizations([mockOrganization]);
         setOrganization(mockOrganization.id);
-        navigate(`/dashboard/${user.roles[0].name.toLowerCase()}`);
+        navigate(`/`);
       } else {
         alert('Credenciais inválidas');
       }

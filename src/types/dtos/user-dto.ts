@@ -32,6 +32,7 @@ export interface UserRole {
 }
 
 export type UserAbilities =
+  | 'Home'
   | 'Dashboard'
   | 'Settings'
   | 'ConsumptionMonitoring'

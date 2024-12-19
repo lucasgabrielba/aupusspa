@@ -45,8 +45,8 @@ export function NavMain() {
                       }
                     }}
                     className={`
-                      p-4 rounded-full transition-colors duration-200 select-none flex items-center gap-3
-                      ${isSelected ? 'bg-card-foreground text-card' : 'hover:bg-card'}
+                      p-4 rounded-full select-none flex items-center gap-3
+                      ${isSelected ? 'bg-card-foreground text-card' : ''}
                     `}
                   >
                     {item.icon && (
@@ -89,16 +89,13 @@ export function NavMain() {
                                 if (isMobile) setOpenMobile(false);
                               }}
                               className={`
-                                p-3 rounded-full transition-colors duration-200 select-none flex items-center gap-3
-                                ${
-                                  isSubItemSelected
-                                    ? 'bg-card-foreground text-card'
-                                    : 'hover:bg-card'
-                                }
+                                p-3 rounded-full select-none flex items-center gap-3
+                                ${isSubItemSelected ? 'bg-card-foreground text-card' : ''}
                               `}
                             >
                               {subItem.icon && (
                                 <subItem.icon
+                                fill={ isSubItemSelected ? 'var(--card)' : 'var(--card)'}
                                   className={`w-4 h-4 shrink-0 ${
                                     isSubItemSelected ? 'text-card' : 'text-card-foreground'
                                   }`}
