@@ -1,3 +1,16 @@
+interface Unit {
+  id: string;
+  name: string;
+}
+
+interface DynamicBillingData {
+  month: string;
+  hasInvoice: boolean;
+  status?: 'overdue' | 'open'; 
+  overdueCount?: number;
+  totalValue?: number;
+}
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -8,45 +21,79 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Unit } from "@/types/dtos/unit-dto";
+import { useUserStore } from "@/store/useUserStore";
+import { UserDTO } from "@/types/dtos/user-dto";
 import { ChevronsUpDown, Plus } from "lucide-react";
 import React from "react";
-
-interface BillingData {
-  month: string;
-  hasInvoice: boolean;
-}
 
 interface TitleCardProps {
   title: string;
   description: string;
 }
 
-export function TitleCard({ title, description }: TitleCardProps) {
+const units: Unit[] = [
+  {
+    id: '1',
+    name: 'Unidade 1',
+  },
+  {
+    id: '2',
+    name: 'Unidade 2',
+  },
+  {
+    id: '3',
+    name: 'Unidade 3',
+  },
+];
 
-  const billingData: BillingData = {
-    month: 'outubro',
-    hasInvoice: true,
+import { format } from 'date-fns'; // Para formatação de data
+import { ptBR } from "date-fns/locale";
+
+function getBillingDataByUser(user: UserDTO): DynamicBillingData {
+  const currentMonth = new Date();
+  const formattedMonth = format(currentMonth, 'MMMM', { locale: ptBR }); 
+
+  if (user.roles.some((r) => r.name === 'Cativo')) {
+    return {
+      month: formattedMonth, // Usando o mês atual
+      hasInvoice: true,
+      status: 'overdue',
+      overdueCount: 3,
+      totalValue: 0,
+    };
+  } else if (user.roles.some((r) => r.name === 'Administrador')) {
+    return {
+      month: formattedMonth, // Usando o mês atual
+      hasInvoice: true,
+      status: 'open',
+    };
+  } else if (user.roles.some((r) => r.name === 'Locatário')) {
+    return {
+      month: formattedMonth, // Usando o mês atual
+      hasInvoice: true,
+      status: 'open',
+    };
+  } else if (user.roles.some((r) => r.name === 'Usineiro')) {
+    return {
+      month: formattedMonth, // Usando o mês atual
+      hasInvoice: true,
+      status: 'open',
+    };
+  }
+
+  return {
+    month: formattedMonth, // Usando o mês atual
+    hasInvoice: false,
   };
+}
 
-  const units: Unit[] = [
-    {
-      id: '1',
-      name: 'Unidade 1',
-    },
-    {
-      id: '2',
-      name: 'Unidade 2',
-    },
-    {
-      id: '3',
-      name: 'Unidade 3',
-    },
-  ]
+export function TitleCard({ title, description }: TitleCardProps) {
+  const { user } = useUserStore();
+  const billingData = getBillingDataByUser(user);
 
-  const [selectedUnits, setSelectedUnits] = React.useState([]);
+  const [selectedUnits, setSelectedUnits] = React.useState<Unit[]>([]);
 
-  const handleSetUnit = (unit) => {
+  const handleSetUnit = (unit: Unit) => {
     setSelectedUnits((prev) => {
       if (prev.find((u) => u.id === unit.id)) {
         return prev.filter((u) => u.id !== unit.id);
@@ -66,7 +113,26 @@ export function TitleCard({ title, description }: TitleCardProps) {
           <CardTitle className="text-lg font-semibold">{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
-        {billingData?.hasInvoice && (
+
+        {billingData?.hasInvoice && billingData.status === 'overdue' && (
+          <Card className="rounded-sm">
+            <CardHeader>
+              <CardTitle className="text-lg font-semibold">
+                Existem {billingData.overdueCount} unidades consumidoras com faturas vencidas no mês de {billingData.month} no valor de R$ {billingData.totalValue},00!
+              </CardTitle>
+              <CardDescription>
+                Clique em <span className="font-semibold">baixar minhas faturas vencidas</span> e use o app do seu banco para seguir com o pagamento!
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm text-card-foreground space-y-2">
+              <Button variant="destructive" className="rounded-sm border-none">
+                Baixar minhas faturas vencidas
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        {billingData?.hasInvoice && billingData.status === 'open' && (
           <Card className="rounded-sm">
             <CardHeader>
               <CardTitle className="text-lg font-semibold">
@@ -83,6 +149,7 @@ export function TitleCard({ title, description }: TitleCardProps) {
             </CardContent>
           </Card>
         )}
+
         <CardFooter className={`flex items-center justify-start p-4 gap-6 bg-tertiary rounded-b-sm ${billingData?.hasInvoice ? 'border-none' : 'border-t'}`}>
           <div className="ml-2">
             <p className="text-md font-semibold text-card-foreground">

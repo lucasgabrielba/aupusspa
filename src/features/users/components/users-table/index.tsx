@@ -61,7 +61,7 @@ export function UsersTable() {
       <CardHeader className="gap-4">
         <div className="flex justify-between items-center w-full">
           <div className="flex flex-col gap-2">
-            <CardTitle className="text-xl font-medium">Usuários</CardTitle>
+            <CardTitle className="text-lg font-medium">Usuários</CardTitle>
             <CardDescription>
               Visualize e gerencie os usuários do sistema
             </CardDescription>
