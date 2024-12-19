@@ -86,7 +86,7 @@ export function UsersTable() {
                 </DialogDescription>
               </DialogHeader>
               <div className="flex flex-col gap-4">
-                {["Cativo", "Usineiro", "Locatário", "Aupus"].map((tipo) => (
+                {["Cativo", "Usineiro", "Locatario", "Aupus"].map((tipo) => (
                   <Button
                     key={tipo}
                     variant="outline"

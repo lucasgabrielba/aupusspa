@@ -124,7 +124,7 @@ export function UserForm({ userType }: UserFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-4 w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 w-full">
           <div className="flex items-center gap-4">
             <Button
