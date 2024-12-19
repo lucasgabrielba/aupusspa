@@ -13,7 +13,7 @@ import { PowerPlantsPage } from './pages/power-plants';
 import { UsersPage } from './pages/users';
 import { ConsumptionMonitoringRenterPage } from './pages/consumption-monitoring-renter';
 import { DefaultRedirect } from './components/common/default-redirect';
-
+import { NewUserPage } from './pages/users/new-user';
 
 export const appRoutes = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ export const appRoutes = createBrowserRouter([
       {
         index: true,
         element: (
-            <DefaultRedirect />
+          <DefaultRedirect />
         ),
       },
       {
@@ -119,11 +119,24 @@ export const appRoutes = createBrowserRouter([
       },
       {
         path: 'usuarios',
-        element: (
-          <FeatureWrapper feature="Admin">
-            <UsersPage />
-          </FeatureWrapper>
-        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <FeatureWrapper feature="Admin">
+                <UsersPage />
+              </FeatureWrapper>
+            ),
+          },
+          {
+            path: 'novo/:type',
+            element: (
+              <FeatureWrapper feature="Admin">
+                <NewUserPage />
+              </FeatureWrapper>
+            ),
+          }
+        ]
       },
       {
         path: '*',

@@ -72,7 +72,7 @@
     --ring: 0;
     --border: hsl(214.3, 31.8%, 91.4%);
     --border-hover: hsl(214.3, 26.8%, 86.4%);
-    --input: hsl(214.3, 31.8%, 91.4%);
+    --input: hsl(0, 0%, 66%);
     --input-hover: hsl(214.3, 26.8%, 86.4%);
 
     --radius: 1rem;
@@ -190,7 +190,7 @@
     --ring: 0;
     --border: hsl(214, 9%, 15%);
     --border-hover: hsl(217.2, 27.6%, 22.5%);
-    --input: hsl(217.2, 32.6%, 17.5%);
+    --input: hsl(0, 0%, 22%);
     --input-hover: hsl(217.2, 27.6%, 22.5%);
 
     --chart-1:338, 100%, 39%;

@@ -9,7 +9,7 @@ export function DefaultRedirect() {
   }
 
   const userRole = user.roles[0]?.name;
-console.log("userRole", userRole);
+
   switch (userRole) {
     case 'Admin':
       return <Navigate to="/monitoramento-de-clientes" />;

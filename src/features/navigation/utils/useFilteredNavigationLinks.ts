@@ -3,7 +3,7 @@ import { NavigationLink, navigationLinks } from './navigation-links';
 
 export function useFilteredNavigationLinks() {
   const { abilities } = useUserStore();
-console.log("abilities," , abilities);
+  
   const filterLinks = (links: NavigationLink[]): NavigationLink[] => {
     if (!abilities) return [];
     return links

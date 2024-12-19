@@ -112,6 +112,6 @@ export const navigationLinks: Array<NavigationLink> = [
     path: '/usuarios',
     icon: Users,
     label: 'Usuários',
-    hint: 'Usuários',
+    hint: 'Usuários'
   }
 ];

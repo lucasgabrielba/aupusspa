@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ChevronsUpDown, Info, UserPlus } from "lucide-react";
 import {
   DropdownMenu,
@@ -34,6 +35,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export function UsersTable() {
+  const navigate = useNavigate();
   const [selectedFiltro, setSelectedFiltro] = useState("Todos (5)");
   const [dialogOpen, setDialogOpen] = useState(false);
   const filtros = ["Todos (5)", "Cativo (3)", "Usineiro (1)", "Locatário (1)"];
@@ -88,7 +90,8 @@ export function UsersTable() {
                   <Button
                     key={tipo}
                     variant="outline"
-                    className="w-full h-24 flex-col items-start  bg-secondary text-secondary-foreground hover:bg-secondary-hover hover:text-secondary-foreground-hover rounded-md shadow-sm px-4"
+                    onClick={() => navigate(`/usuarios/novo/${tipo.toLowerCase()}`)}
+                    className="w-full h-24 flex-col items-start bg-secondary text-secondary-foreground hover:bg-secondary-hover hover:text-secondary-foreground-hover rounded-md shadow-sm px-4"
                   >
                     <span className="text-2xl font-medium">{tipo}</span>
                     <span className="text-sm text-muted-foreground">Detalhe</span>
@@ -99,7 +102,6 @@ export function UsersTable() {
           </Dialog>
         </div>
 
-        {/* Filtros responsivos */}
         <div className="flex flex-col gap-4 w-full">
           <div className="block lg:hidden w-full">
             <DropdownMenu>
@@ -136,16 +138,19 @@ export function UsersTable() {
             ))}
           </div>
 
-          <div className="flex gap-2 w-full">
-            <Input
-              placeholder="Pesquisar por..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 rounded-sm bg-card"
-            />
-            <Button variant="default" className="bg-card-foreground text-card rounded-xs">
-              Pesquisar
-            </Button>
+          <div className="flex flex-col gap-2 w-full">
+            <label className="mb-2">Pesquisar por:</label>
+            <div className="flex gap-2">
+              <Input
+                placeholder="Digite para pesquisar..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="flex-1 rounded-sm bg-card"
+              />
+              <Button variant="default" className="bg-card-foreground text-card rounded-xs">
+                Pesquisar
+              </Button>
+            </div>
           </div>
         </div>
       </CardHeader>
