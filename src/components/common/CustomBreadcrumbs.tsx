@@ -13,7 +13,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { nanoid } from 'nanoid';
-import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ChevronDownIcon } from 'lucide-react';
 
@@ -29,9 +28,12 @@ interface BreadcrumbConfigItem {
   dropdownItems?: DropdownItem[];
 }
 
+import React, { useEffect, useRef } from 'react';
+
 export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const breadcrumbRef = useRef<HTMLDivElement>(null);
 
   const handleClick = (href: string) => {
     navigate(href);
@@ -103,67 +105,79 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
 
   const breadcrumbItems = getBreadcrumbItems();
 
+  // Scroll to the end on render
+  useEffect(() => {
+    if (breadcrumbRef.current) {
+      breadcrumbRef.current.scrollLeft = breadcrumbRef.current.scrollWidth;
+    }
+  }, [breadcrumbItems]);
+
   return (
-    <Breadcrumb className={className}>
-      <BreadcrumbList>
-        {breadcrumbItems.map((item, index) => (
-          <React.Fragment key={nanoid()}>
-            <BItem>
-              {index === 0 ? (
-                <div className="flex items-center gap-2">
-                  <img src="/logoaupus.svg" alt="Aupus Logo" className="w-16 mr-3" />
+    <div
+      ref={breadcrumbRef}
+      className={`breadcrumb-scrollable ${className}`}
+    >
+      <Breadcrumb>
+        <BreadcrumbList>
+          {breadcrumbItems.map((item, index) => (
+            <React.Fragment key={nanoid()}>
+              <BItem>
+                {index === 0 ? (
+                  <div className="flex items-center gap-2">
+                    <img src="/logoaupus.svg" alt="Aupus Logo" className="w-16 mr-3" />
+                    <BreadcrumbPage className="text-secondary-foreground font-semibold">
+                      {item.label}
+                    </BreadcrumbPage>
+                  </div>
+                ) : item.isDropdown ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="flex items-center gap-1 text-secondary-foreground">
+                      {item.label}
+                      <ChevronDownIcon className="h-4 w-4" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start">
+                      {item.dropdownItems?.map((dropdownItem) => (
+                        <DropdownMenuItem key={nanoid()} asChild>
+                          <a
+                            href={dropdownItem.href}
+                            className="text-secondary-foreground"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleClick(dropdownItem.href);
+                            }}
+                          >
+                            {dropdownItem.label}
+                          </a>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : item.path ? (
+                  <BreadcrumbLink
+                    href={item.path}
+                    className="text-secondary-foreground"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleClick(item.path);
+                    }}
+                  >
+                    {item.label}
+                  </BreadcrumbLink>
+                ) : (
                   <BreadcrumbPage className="text-secondary-foreground font-semibold">
                     {item.label}
                   </BreadcrumbPage>
-                </div>
-              ) : item.isDropdown ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center gap-1 text-secondary-foreground">
-                    {item.label}
-                    <ChevronDownIcon className="h-4 w-4" />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start">
-                    {item.dropdownItems?.map((dropdownItem) => (
-                      <DropdownMenuItem key={nanoid()} asChild>
-                        <a
-                          href={dropdownItem.href}
-                          className="text-secondary-foreground"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleClick(dropdownItem.href);
-                          }}
-                        >
-                          {dropdownItem.label}
-                        </a>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : item.path ? (
-                <BreadcrumbLink
-                  href={item.path}
-                  className="text-secondary-foreground"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleClick(item.path);
-                  }}
-                >
-                  {item.label}
-                </BreadcrumbLink>
-              ) : (
-                <BreadcrumbPage className="text-secondary-foreground font-semibold">
-                  {item.label}
-                </BreadcrumbPage>
+                )}
+              </BItem>
+              {index < breadcrumbItems.length - 1 && (
+                <BreadcrumbSeparator className="text-secondary-foreground">
+                  {/* Separador */}
+                </BreadcrumbSeparator>
               )}
-            </BItem>
-            {index < breadcrumbItems.length - 1 && (
-              <BreadcrumbSeparator className="text-secondary-foreground">
-                {/* Separador */}
-              </BreadcrumbSeparator>
-            )}
-          </React.Fragment>
-        ))}
-      </BreadcrumbList>
-    </Breadcrumb>
+            </React.Fragment>
+          ))}
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
   );
 }

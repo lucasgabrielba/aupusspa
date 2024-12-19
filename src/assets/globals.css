@@ -329,5 +329,24 @@
     background-color: var(--color-bg-card-hover);
   }
 
+  .breadcrumb-scrollable {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  
+  .breadcrumb-scrollable::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .breadcrumb-scrollable::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  
+  .breadcrumb-scrollable > * {
+    flex-shrink: 0;
+  }
 
 }
