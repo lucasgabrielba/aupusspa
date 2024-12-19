@@ -29,7 +29,6 @@ const mockOrganization: OrganizationDTO = {
     withdrawal_terms: 'Termos de retirada...',
     warranty_terms: 'Termos de garantia...',
   },
-  abilities: ['Dashboard', 'Settings', 'ConsumptionMonitoring', 'PowerGeneration', 'Admin'],
   brand: {
     name: 'Equatorial Energy',
     logoPath: '/path/to/logo.png',
@@ -39,15 +38,58 @@ const mockOrganization: OrganizationDTO = {
   updated_at: new Date(),
 };
 
-const mockUser : UserDTO= {
-  id: '1',
-  status: UserStatus.ACTIVE,
-  name: 'Root User',
-  email: 'root@root.com',
-  roles: [],
-  created_at: new Date(),
-  updated_at: new Date(),
-};
+// Mock Users
+// Mock Users with Abilities
+const users: UserDTO[] = [
+  {
+    id: '1',
+    status: UserStatus.ACTIVE,
+    name: 'Administrador',
+    email: 'administrador@root.com',
+    roles: [{ organizationId: '1', name: 'Admin' }],
+    abilities: [
+      'Dashboard',
+      'Settings',
+      'ConsumptionMonitoring',
+      'PowerGeneration',
+      'OpportunitiesTracking',
+      'Invoices',
+      'Admin',
+    ],
+    created_at: new Date(),
+    updated_at: new Date(),
+  },
+  {
+    id: '2',
+    status: UserStatus.ACTIVE,
+    name: 'Cativo',
+    email: 'cativo@root.com',
+    roles: [{ organizationId: '1', name: 'Cativo' }],
+    abilities: ['ConsumptionMonitoring', 'PowerGeneration', 'OpportunitiesTracking', 'Invoices'],
+    created_at: new Date(),
+    updated_at: new Date(),
+  },
+  {
+    id: '3',
+    status: UserStatus.ACTIVE,
+    name: 'Locatário',
+    email: 'locatario@root.com',
+    roles: [{ organizationId: '1', name: 'Locatário' }],
+    abilities: ['ConsumptionMonitoringRenter', 'Invoices'],
+    created_at: new Date(),
+    updated_at: new Date(),
+  },
+  {
+    id: '4',
+    status: UserStatus.ACTIVE,
+    name: 'Usineiro',
+    email: 'usineiro@root.com',
+    roles: [{ organizationId: '1', name: 'Usineiro' }],
+    abilities: ['PowerPlants', 'PowerGeneration', 'OpportunitiesTracking', 'Invoices'],
+    created_at: new Date(),
+    updated_at: new Date(),
+  },
+];
 
 export default function LoginCard() {
   const [email, setEmail] = useState('');
@@ -74,11 +116,12 @@ export default function LoginCard() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      if (email === 'root@root.com' && password === 'root') {
-        setUser(mockUser);
+      const user = users.find((u) => u.email === email && password === 'root');
+      if (user) {
+        setUser(user);
         setOrganizations([mockOrganization]);
         setOrganization(mockOrganization.id);
-        navigate('/monitoramento-de-consumo');
+        navigate(`/dashboard/${user.roles[0].name.toLowerCase()}`);
       } else {
         alert('Credenciais inválidas');
       }

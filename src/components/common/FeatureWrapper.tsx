@@ -1,16 +1,16 @@
-import { useOrganizationsStore } from '@/store/useOrganizationsStore';
-import { OrganizationAbilities } from '@/types/dtos/organization-dto';
+import { useUserStore } from '@/store/useUserStore';
+import { UserAbilities } from '@/types/dtos/user-dto';
 import { type ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type FeatureWrapperProps = {
-  feature: OrganizationAbilities;
+  feature: UserAbilities;
   children: ReactNode;
 };
 
 export function FeatureWrapper({ feature, children }: FeatureWrapperProps) {
   const navigate = useNavigate();
-  const { abilities } = useOrganizationsStore();
+  const { abilities } = useUserStore();
 
   useEffect(() => {
     if (abilities && !abilities.includes(feature)) {

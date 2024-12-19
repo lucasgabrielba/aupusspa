@@ -8,7 +8,7 @@ export function ManagementFrameworkPage() {
   return (
     <Layout>
       <Layout.Main>
-        <TitleCardAdmin title='Quadro de Gerenciamento' description='Acompanhe o consumo total, valores acumulados e o número de unidades consumidoras cadastradas' />
+        <TitleCardAdmin title='Clube Aupus' description='Acompanhe o consumo total, valores acumulados e o número de unidades consumidoras cadastradas' />
         <ManagementFrameworkMetricCards />
         <EnergyChart />
         <LeaseTableCard />

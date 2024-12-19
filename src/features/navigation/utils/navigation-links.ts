@@ -1,20 +1,22 @@
-import { OrganizationAbilities } from '@/types/dtos/organization-dto';
+import { ChartNoAxesColumn } from '@/components/icons/ChartNoAxesColumn';
+import { UserAbilities } from '@/types/dtos/user-dto';
 import {
   type LucideIcon,
   Activity,
   Zap,
   Magnet,
   DollarSign,
-  BriefcaseBusiness,
-  UsersRound,
-  BarChart2,
+  Factory,
+  Component,
+  SquareActivity,
+  Users,
 } from 'lucide-react';
 
 export type NavigationLink = {
   key: string;
   path: string;
-  featureKey?: OrganizationAbilities;
-  icon: LucideIcon;
+  featureKey?: UserAbilities;
+  icon: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>;
   label: string;
   hint?: string;
   links?: NavigationLink[];
@@ -22,9 +24,33 @@ export type NavigationLink = {
 
 export const navigationLinks: Array<NavigationLink> = [
   {
+    key: 'admin',
+    featureKey: 'Admin',
+    path: '/monitoramento-de-clientes',
+    icon: ChartNoAxesColumn ,
+    label: 'Monitoramento de Clientes',
+    hint: 'Monitoramento de Clientes',
+  },
+  {
+    key: 'admin',
+    featureKey: 'Admin',
+    path: '/clube-aupus',
+    icon: Component,
+    label: 'Clube Aupus',
+    hint: 'Clube Aupus',
+  },
+  {
     key: 'consumptionMonitoring',
     featureKey: 'ConsumptionMonitoring',
     path: '/monitoramento-de-consumo',
+    icon: Activity,
+    label: 'Monitoramento de Consumo',
+    hint: 'Monitoramento de Consumo',
+  },
+  {
+    key: 'consumptionMonitoringRenter',
+    featureKey: 'ConsumptionMonitoringRenter',
+    path: 'locatario/monitoramento-de-consumo',
     icon: Activity,
     label: 'Monitoramento de Consumo',
     hint: 'Monitoramento de Consumo',
@@ -36,10 +62,28 @@ export const navigationLinks: Array<NavigationLink> = [
     icon: Zap,
     label: 'Geração de Energia',
     hint: 'Geração de Energia',
+    links: [
+      {
+        key: 'powerGeneration',
+        featureKey: 'PowerGeneration',
+        path: '/geracao-de-energia/beneficiadas',
+        icon: SquareActivity,
+        label: 'Beneficiadas',
+        hint: 'Beneficiadas',
+      }
+    ]
+  },
+  {
+    key: 'powerPlants',
+    featureKey: 'PowerPlants',
+    path: '/minhas-usinas',
+    icon: Factory,
+    label: 'Minhas Usinas',
+    hint: 'Minhas Usinas',
   },
   {
     key: 'opportunityTracker',
-    featureKey: 'OpportunityTracker',
+    featureKey: 'OpportunitiesTracking',
     path: '/rastreador-de-oportunidades',
     icon: Magnet,
     label: 'Rastreador de Oportunidades',
@@ -54,29 +98,11 @@ export const navigationLinks: Array<NavigationLink> = [
     hint: 'Minhas Faturas',
   },
   {
-    key: 'admin',
+    key: 'users',
     featureKey: 'Admin',
-    path: '/administrador/monitoramento-de-clientes',
-    icon: BriefcaseBusiness,
-    label: 'Administrador',
-    hint: 'Administrador',
-    links: [
-      {
-        key: 'admin',
-        featureKey: 'Admin',
-        path: '/administrador/monitoramento-de-clientes',
-        icon: UsersRound,
-        label: 'Monitoramento de Clientes',
-        hint: 'Monitoramento de Clientes',
-      },
-      {
-        key: 'admin',
-        featureKey: 'Admin',
-        path: '/administrador/quadro-de-gerenciamento',
-        icon: BarChart2,
-        label: 'Quadro de Gerenciamento',
-        hint: 'Quadro de Gerenciamento',
-      },
-    ],
-  },
+    path: '/usuarios',
+    icon: Users,
+    label: 'Usuários',
+    hint: 'Usuários',
+  }
 ];

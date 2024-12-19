@@ -6,8 +6,13 @@ import { OpportunitiesPage } from './pages/opportunities';
 import { InvoicesPage } from './pages/invoices';
 import { PowerGenerationPage } from './pages/power-generation';
 import { BenefitedPage } from './pages/power-generation/benefited';
-import { AdminPage } from './pages/admin';
-import { ManagementFrameworkPage } from './pages/admin/management-framework';
+import { ClientsMonitoringPage } from './pages/clients-monitoring';
+import { ManagementFrameworkPage } from './pages/management-framework';
+import { FeatureWrapper } from './components/common/FeatureWrapper';
+import { PowerPlantsPage } from './pages/power-plants';
+import { UsersPage } from './pages/users';
+import { ConsumptionMonitoringRenterPage } from './pages/consumption-monitoring-renter';
+
 
 export const appRoutes = createBrowserRouter([
   {
@@ -20,22 +25,54 @@ export const appRoutes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/monitoramento-de-consumo" />,
+        element: (
+          <FeatureWrapper feature="ConsumptionMonitoring">
+            <Navigate to="/monitoramento-de-consumo" />
+          </FeatureWrapper>
+        ),
       },
       {
         path: 'monitoramento-de-consumo',
-        element: <ConsumptionMonitoringPage />,
+        element: (
+          <FeatureWrapper feature="ConsumptionMonitoring">
+            <ConsumptionMonitoringPage />
+          </FeatureWrapper>
+        ),
+      },
+      {
+        path: 'locatario/monitoramento-de-consumo',
+        element: (
+          <FeatureWrapper feature="ConsumptionMonitoringRenter">
+            <ConsumptionMonitoringRenterPage />
+          </FeatureWrapper>
+        ),
+      },
+      {
+        path: 'minhas-usinas',
+        element: (
+          <FeatureWrapper feature="PowerPlants">
+            <PowerPlantsPage />
+          </FeatureWrapper>
+        ),
       },
       {
         path: '/geracao-de-energia',
         children: [
           {
             index: true,
-            element: <PowerGenerationPage />,
+            element: (
+              <FeatureWrapper feature="PowerGeneration">
+                <PowerGenerationPage />
+              </FeatureWrapper>
+            ),
           },
           {
             path: 'beneficiadas',
-            element: <BenefitedPage />,
+            element: (
+              <FeatureWrapper feature="PowerGeneration">
+                <BenefitedPage />
+              </FeatureWrapper>
+            ),
           },
         ],
       },
@@ -44,7 +81,11 @@ export const appRoutes = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <OpportunitiesPage />,
+            element: (
+              <FeatureWrapper feature="OpportunitiesTracking">
+                <OpportunitiesPage />
+              </FeatureWrapper>
+            ),
           },
         ],
       },
@@ -53,30 +94,45 @@ export const appRoutes = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <InvoicesPage />,
+            element: (
+              <FeatureWrapper feature="Invoices">
+                <InvoicesPage />
+              </FeatureWrapper>
+            ),
           },
         ],
       },
       {
-        path: '/administrador',
-        children: [
-          {
-            index: true,
-            element: <Navigate to="/administrador/monitoramento-de-clientes" />,
-          },
-          {
-            path: 'monitoramento-de-clientes',
-            element: <AdminPage />,
-          },
-          {
-            path: 'quadro-de-gerenciamento',
-            element: <ManagementFrameworkPage />,
-          },
-        ],
+        path: 'monitoramento-de-clientes',
+        element: (
+          <FeatureWrapper feature="Admin">
+            <ClientsMonitoringPage />
+          </FeatureWrapper>
+        ),
+      },
+      {
+        path: 'clube-aupus',
+        element: (
+          <FeatureWrapper feature="Admin">
+            <ManagementFrameworkPage />
+          </FeatureWrapper>
+        ),
+      },
+      {
+        path: 'usuarios',
+        element: (
+          <FeatureWrapper feature="Admin">
+            <UsersPage />
+          </FeatureWrapper>
+        ),
       },
       {
         path: '*',
-        element: <Navigate to="/monitoramento-de-consumo" />,
+        element: (
+          <FeatureWrapper feature="ConsumptionMonitoring">
+            <Navigate to="/monitoramento-de-consumo" />
+          </FeatureWrapper>
+        ),
       },
     ],
   },

@@ -5,10 +5,10 @@
 
 @layer base {
   :root {
-    --background: hsl(210, 40%, 96.1%);
+    --background: hsl(0, 0%, 100%);
     --foreground: hsl(222.2, 84%, 4.9%);
 
-    --card: hsl(0, 0%, 100%);
+    --card: hsl(0, 0%, 92%);
     --card-foreground: hsl(0, 0%, 0%);
     --card-hover: hsl(200, 18%, 90%);
     --card-foreground-hover: hsl(220, 80%, 5%);
@@ -23,7 +23,7 @@
     --primary-hover: hsl(221, 59%, 24%);
     --primary-foreground-hover: hsl(0, 0%, 95%);
 
-    --secondary: hsl(0, 0%, 77%);
+    --secondary: hsl(0, 0%, 100%);
     --secondary-foreground: hsl(0, 0%, 0%);
     --secondary-hover: hsl(0, 0%, 95%);
     --secondary-foreground-hover: hsl(219, 81%, 8%);
@@ -77,8 +77,8 @@
 
     --radius: 1rem;
 
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
+    --chart-1: 338, 100%, 39%;
+    --chart-2: 206, 85%, 32%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
@@ -193,11 +193,11 @@
     --input: hsl(217.2, 32.6%, 17.5%);
     --input-hover: hsl(217.2, 27.6%, 22.5%);
 
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-1:338, 100%, 39%;
+    --chart-2:206, 85%, 32%;
+    --chart-3:30 80% 55%;
+    --chart-4:280 65% 60%;
+    --chart-5:340 75% 55%;
 
     --sidebar-background: hsl(0, 0%, 100%);
     --sidebar-foreground: 240 4.8% 95.9%;

@@ -1,5 +1,4 @@
 import { OrganizationDTO } from './organization-dto';
-import { RoleDTO } from './role-dto';
 
 export interface UserDTO {
   id: string;
@@ -14,6 +13,8 @@ export interface UserDTO {
 
   roles: UserRole[];
 
+  abilities: UserAbilities[];
+
   role?: string;
 
   created_at: Date;
@@ -25,10 +26,18 @@ export enum UserStatus {
   INACTIVE = 'Inativo',
 }
 
-export interface UserRole extends RoleDTO {
-  pivot: {
-    model_type: string;
-    model_id: string;
-    role_id: number;
-  };
+export interface UserRole {
+  organizationId: string;
+  name: string;
 }
+
+export type UserAbilities =
+  | 'Dashboard'
+  | 'Settings'
+  | 'ConsumptionMonitoring'
+  | 'PowerGeneration'
+  | 'OpportunitiesTracking'
+  | 'Invoices'
+  | 'PowerPlants'
+  | 'ConsumptionMonitoringRenter'
+  | 'Admin';

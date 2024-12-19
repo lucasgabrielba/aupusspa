@@ -21,7 +21,7 @@ export function GenerationMonitoring({ className }: GenerationMonitoringProps) {
   return (
     <div className={`flex flex-col w-full gap-6 ${className}`}>
       <TitleCard
-        title="Monitoramento de Consumo"
+        title="Geração de Energia"
         description="Acompanhe o consumo total, valores acumulados e o número de unidades consumidoras cadastradas"
          />
       <MetricCards />

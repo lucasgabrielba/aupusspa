@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { navigationLinks } from '@/features/navigation/utils/navigation-links';
+import { useFilteredNavigationLinks } from '@/features/navigation/utils/useFilteredNavigationLinks';
 
 import {
   CommandDialog,
@@ -16,6 +15,7 @@ import { nanoid } from 'nanoid';
 export function CommandPallete() {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+  const navigationLinks = useFilteredNavigationLinks();
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {

@@ -57,7 +57,7 @@ export function CustomBreadcrumbs({ className = '' }: { className?: string }) {
       isDropdown: true,
       dropdownItems: [
         { label: 'Monitoramento de Clientes', href: '/administrador/monitoramento-de-clientes' },
-        { label: 'Quadro de Gerenciamento', href: '/administrador/quadro-de-gerenciamento' },
+        { label: 'Clube Aupus', href: '/administrador/clube-aupus' },
       ],
     },
   ];

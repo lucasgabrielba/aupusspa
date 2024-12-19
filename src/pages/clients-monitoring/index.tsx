@@ -5,7 +5,7 @@ import { MetricCardsAdmin } from '@/features/admin/components/customer-monitorin
 import { TitleCardAdmin } from '@/features/admin/components/title-card-admin';
 import { ConsumerUnitsMap } from '@/features/consumption-monitoring/components/consumer-unit-map';
 
-export function AdminPage() {
+export function ClientsMonitoringPage() {
   return (
     <Layout>
       <Layout.Main>

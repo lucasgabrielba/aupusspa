@@ -11,7 +11,6 @@ export interface OrganizationDTO {
 
   history: History[];
   preferences: OrganizationPreferences;
-  abilities: OrganizationAbilities[];
   brand: OrganizationBrand;
 
   created_at: Date;
@@ -44,11 +43,4 @@ export interface OrganizationBrand {
   bannerPath: string;
 }
 
-export type OrganizationAbilities =
-  | 'Dashboard'
-  | 'Settings'
-  | 'ConsumptionMonitoring'
-  | 'PowerGeneration'
-  | 'OpportunityTracker'
-  | 'Invoices'
-  | 'Admin';
+
